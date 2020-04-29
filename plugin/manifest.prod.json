@@ -1,0 +1,31 @@
+{
+  "manifest_version": 1,
+  "version": 1,
+  "type": "APP",
+  "name": {
+    "ja": "カスタム関連レコードプラグイン",
+    "en": "custom reference table plugin"
+  },
+  "description": {
+    "ja": "絞り込み条件の自由度が高い関連レコードです。",
+    "en": "This is reference table with high degree of freedom in filtering settings."
+  },
+  "icon": "icon.png",
+  "desktop": {
+    "js": [
+      "desktop.min.js"
+    ],
+    "css": [
+      "desktop.css"
+    ]
+  },
+  "config": {
+    "html": "config.html",
+    "js": [
+      "config.min.js"
+    ],
+    "css": [
+      "config.css"
+    ]
+  }
+}
