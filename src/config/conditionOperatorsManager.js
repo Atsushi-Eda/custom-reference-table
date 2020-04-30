@@ -22,7 +22,9 @@ export default class conditionOperatorsManager {
     ['USER_SELECT', ['in', 'not in']],
     ['ORGANIZATION_SELECT', ['in', 'not in']],
     ['GROUP_SELECT', ['in', 'not in']],
-    ['STATUS', ['=', '!=', 'in', 'not in']]
+    ['STATUS', ['=', '!=', 'in', 'not in']],
+    ['STATUS_ASSIGNEE', ['in', 'not in']],
+    ['CATEGORY', ['in', 'not in']]
   ])
   static get (targetFields, value, rowIndex) {
     if(!value[rowIndex].targetField) return null;

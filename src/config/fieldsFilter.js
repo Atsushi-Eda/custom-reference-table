@@ -11,7 +11,6 @@ export default class fieldsFilter {
   }
   static conditionTarget (fields) {
     return this.filter(fields, [
-      'STATUS_ASSIGNEE',
       'CATEGORY',
       'SUBTABLE',
       'GROUP',
@@ -31,7 +30,7 @@ export default class fieldsFilter {
       'CATEGORY',
       'MULTI_LINE_TEXT',
       'RICH_TEXT',
-      'DROP_DOWN',
+      'CHECK_BOX',
       'MULTI_SELECT',
       'FILE',
       'USER_SELECT',
