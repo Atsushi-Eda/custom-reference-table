@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from "moment";
 import UserCell from './UserCell';
 import FilesCell from './FilesCell';
 
@@ -17,6 +18,8 @@ const Cell = ({type, value, property}) => {
     return <div dangerouslySetInnerHTML={{__html: value}}></div>;
   }else if(['CHECK_BOX', 'MULTI_SELECT', 'CATEGORY'].includes(type)){
     return <div>{value.map((v, i) => <div key={i}>{v}</div>)}</div>;
+  }else if(['DATETIME'].includes(type)){
+    return <div>{moment(value).isValid() ? moment(value).format('YYYY-MM-DD HH:mm') : value}</div>;
   }else if(['FILE'].includes(type)){
     return <FilesCell files={value} />;
   }else if(['LINK'].includes(type)){
