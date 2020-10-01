@@ -30,16 +30,17 @@ import formFieldsGetter from "./formFieldsGetter";
         if(!space) return;
         const domRoot = document.createElement('div');
         domRoot.id = 'custom-reference-table-plugin-' + index;
+        domRoot.classList.add(event.type === 'app.record.detail.show' ? 'custom-reference-table-plugin-detail' : 'custom-reference-table-plugin-print');
         space.appendChild(domRoot);
         ReactDOM.render(
           <div>
             <Label text={app.name} />
             <Table
               columns={[
-                {
+                ...(event.type === 'app.record.detail.show' ? [{
                   header: 'id',
                   cell: ({rowIndex}) => <IdCell app={referenceTable.app} $id={records[rowIndex].$id.value} />
-                },
+                }] : []),
                 ...referenceTable.shows.map(({field}) => ({
                   header: properties[field].label,
                   cell: ({rowIndex}) =>
