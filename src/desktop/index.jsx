@@ -14,7 +14,8 @@ import formFieldsGetter from "./formFieldsGetter";
     getRecordsFromAllReferenceTables: selfRecord => recordsGetter.getFromAllReferenceTables(referenceTables, selfRecord)
   };
   kintone.events.on([
-    'app.record.detail.show'
+    'app.record.detail.show',
+    'app.record.print.show',
   ], event => {
     Promise.all([
       recordsGetter.getFromAllReferenceTables(referenceTables, event.record),
