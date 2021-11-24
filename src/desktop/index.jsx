@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Label, Table} from '@kintone/kintone-ui-component';
+import { Label, Table } from '@kintone/kintone-ui-component';
 import IdCell from './IdCell';
 import Cell from './Cell';
 import recordsGetter from "./recordsGetter";
@@ -8,7 +8,7 @@ import appGetter from "./appGetter";
 import formFieldsGetter from "./formFieldsGetter";
 
 (PLUGIN_ID => {
-  const referenceTables = JSON.parse(kintone.plugin.app.getConfig(PLUGIN_ID).referenceTables);
+  const referenceTables = JSON.parse(kintone.plugin.app.getConfig(PLUGIN_ID)?.referenceTables || '[]');
   window.customReferenceTablePlugin = {
     getRecordsFromSingleReferenceTable: (index, selfRecord) => recordsGetter.getFromSingleReferenceTable(referenceTables[index], selfRecord),
     getRecordsFromAllReferenceTables: selfRecord => recordsGetter.getFromAllReferenceTables(referenceTables, selfRecord)
@@ -27,7 +27,7 @@ import formFieldsGetter from "./formFieldsGetter";
         const app = appResponses[index];
         const properties = formFieldsResponses[index].properties;
         const space = kintone.app.record.getSpaceElement(referenceTable.space);
-        if(!space) return;
+        if (!space) return;
         const domRoot = document.createElement('div');
         domRoot.id = 'custom-reference-table-plugin-' + index;
         domRoot.classList.add(event.type === 'app.record.detail.show' ? 'custom-reference-table-plugin-detail' : 'custom-reference-table-plugin-print');
@@ -39,11 +39,11 @@ import formFieldsGetter from "./formFieldsGetter";
               columns={[
                 ...(event.type === 'app.record.detail.show' ? [{
                   header: 'id',
-                  cell: ({rowIndex}) => <IdCell app={referenceTable.app} $id={records[rowIndex].$id.value} />
+                  cell: ({ rowIndex }) => <IdCell app={referenceTable.app} $id={records[rowIndex].$id.value} />
                 }] : []),
-                ...referenceTable.shows.map(({field}) => ({
+                ...referenceTable.shows.map(({ field }) => ({
                   header: properties[field].label,
-                  cell: ({rowIndex}) =>
+                  cell: ({ rowIndex }) =>
                     <Cell
                       type={records[rowIndex][field].type}
                       value={records[rowIndex][field].value}

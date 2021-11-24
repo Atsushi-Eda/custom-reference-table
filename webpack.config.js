@@ -1,7 +1,8 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-module.exports = (env = {}) => {
-  return {
+const KintonePlugin = require('@kintone/webpack-plugin-kintone-plugin');
+
+module.exports = [
+  {
     entry: {
       "config.min": './src/config/index.jsx',
       "desktop.min": './src/desktop/index.jsx',
@@ -18,8 +19,7 @@ module.exports = (env = {}) => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['react-app','@babel/preset-env'],
-              plugins: ["transform-class-properties"]
+              presets: ['@babel/preset-react', '@babel/preset-env'],
             }
           }
         },
@@ -32,20 +32,21 @@ module.exports = (env = {}) => {
         }
       ]
     },
+    externals: {
+      luxon: 'luxon',
+    },
+    plugins: [
+      new KintonePlugin({
+        manifestJSONPath: './plugin/manifest.json',
+        privateKeyPath: './private.ppk',
+        pluginZipPath: './plugin.zip'
+      })
+    ],
     resolve: {
       extensions: ['.js', '.jsx']
     },
-    watch: env.watch,
-    optimization: {
-      minimizer: [
-        new UglifyJsPlugin({
-          include: /\.min\.js$/,
-        })
-      ]
-    },
-    devtool: 'inline-source-map',
     devServer: {
       disableHostCheck: true
     }
   }
-}
+]

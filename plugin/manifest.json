@@ -3,7 +3,7 @@
   "version": 1,
   "type": "APP",
   "name": {
-    "ja": "カスタム関連レコードプラグイン",
+    "ja": "カスタム関連レコードプラグインkose",
     "en": "custom reference table plugin"
   },
   "description": {
@@ -13,6 +13,7 @@
   "icon": "icon.png",
   "desktop": {
     "js": [
+      "https://js.cybozu.com/luxon/2.0.2/luxon.min.js",
       "desktop.min.js"
     ],
     "css": [

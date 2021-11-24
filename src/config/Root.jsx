@@ -5,8 +5,10 @@ import ConditionsCell from './ConditionsCell';
 import ShowsCell from './ShowsCell';
 import SortsCell from './SortsCell';
 import selectItemManager from './selectItemManager';
-import {Connection, App} from '@kintone/kintone-js-sdk';
-const kintoneApp = new App(new Connection);
+// import {Connection, App} from '@kintone/kintone-js-sdk';
+// const kintoneApp = new App(new Connection);
+import { KintoneRestAPIClient } from '@kintone/rest-api-client';
+const kintoneRestAPIClient = new KintoneRestAPIClient();
 
 export default class Root extends React.Component {
   constructor(props) {
@@ -44,8 +46,8 @@ export default class Root extends React.Component {
   }
   searchApp = (appId, rowIndex) => {
     Promise.all([
-      kintoneApp.getApp({id: appId}),
-      kintoneApp.getFormFields({app: appId})
+      kintoneRestAPIClient.app.getApp({id: appId}),
+      kintoneRestAPIClient.app.getFormFields({app: appId})
     ]).then(([{name}, {properties}]) => {
       this.editTargetApp({
         id: appId,

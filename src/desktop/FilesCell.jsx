@@ -1,10 +1,12 @@
 import React from 'react';
-import {Connection, File} from '@kintone/kintone-js-sdk';
-const kintoneFile = new File(new Connection);
+// import {Connection, File} from '@kintone/kintone-js-sdk';
+// const kintoneFile = new File(new Connection);
+import { KintoneRestAPIClient } from '@kintone/rest-api-client';
+const kintoneRestAPIClient = new KintoneRestAPIClient();
 
 const FilesCell = ({files}) => {
   const downloadFile = (name, fileKey) => {
-    kintoneFile.download({fileKey}).then(blob => {
+    kintoneRestAPIClient.file.download({fileKey}).then(blob => {
       const downloadLink = document.createElement('a');
       downloadLink.href = URL.createObjectURL(blob);
       downloadLink.download = name;
