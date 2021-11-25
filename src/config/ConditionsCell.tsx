@@ -1,14 +1,16 @@
-import React from 'react';
-import {Table, Dropdown} from '@kintone/kintone-ui-component';
+// import React from 'react';
+import { Table, Dropdown } from '@kintone/kintone-ui-component';
 import fieldsFilter from './fieldsFilter';
 import selectItemManager from './selectItemManager';
 import conditionOperatorsManager from './conditionOperatorsManager';
+// @ts-ignore
+import { DispatchParams } from "@kintone/kintone-ui-component/esm/react/Table";
 
 const ConditionsCell = props => {
   const value = props.value || [{}];
   const columns = [{
     header: 'target field',
-    cell: ({rowIndex, onCellChange}) =>
+    cell: ({ rowIndex, onCellChange }: DispatchParams) =>
       <Dropdown
         items={selectItemManager.createItemsForFields(fieldsFilter.conditionTarget(props.targetFields))}
         value={selectItemManager.getValueForFields(fieldsFilter.conditionTarget(props.targetFields), value[rowIndex].targetField)}
@@ -16,15 +18,15 @@ const ConditionsCell = props => {
       />
   }, {
     header: 'operator',
-    cell: ({rowIndex, onCellChange}) =>
+    cell: ({ rowIndex, onCellChange }: DispatchParams) =>
       <Dropdown
         items={selectItemManager.createItems(conditionOperatorsManager.get(props.targetFields, value, rowIndex))}
-        value={selectItemManager.getValue(conditionOperatorsManager.get(props.targetFields, value, rowIndex), value[rowIndex].operator)}
+        value={selectItemManager.getValue({ unFormattedItems: conditionOperatorsManager.get(props.targetFields, value, rowIndex), value: value[rowIndex].operator })}
         onChange={newValue => onCellChange(newValue, value, rowIndex, 'operator')}
       />
   }, {
     header: 'self field',
-    cell: ({rowIndex, onCellChange}) =>
+    cell: ({ rowIndex, onCellChange }: DispatchParams) =>
       <Dropdown
         items={selectItemManager.createItemsForFields(fieldsFilter.conditionSelf(props.selfFields))}
         value={selectItemManager.getValueForFields(fieldsFilter.conditionSelf(props.selfFields), value[rowIndex].selfField)}
@@ -36,9 +38,9 @@ const ConditionsCell = props => {
       columns={columns}
       data={value}
       defaultRowData={{}}
-      onRowAdd={({data}) => props.onChange(data)}
-      onRowRemove={({data}) => props.onChange(data)}
-      onCellChange={({data}) => props.onChange(data)}
+      onRowAdd={({ data }) => props.onChange(data)}
+      onRowRemove={({ data }) => props.onChange(data)}
+      onCellChange={({ data }) => props.onChange(data)}
     />
   );
 };

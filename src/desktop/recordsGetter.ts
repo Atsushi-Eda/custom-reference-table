@@ -2,11 +2,12 @@ import queryCondition from "./queryConditonManager";
 import querySortManager from "./querySortManager";
 // import {Connection, Record} from '@kintone/kintone-js-sdk';
 // const kintoneRecord = new Record(new Connection);
+import {Record} from "@kintone/rest-api-client/lib/client/types";
 import { KintoneRestAPIClient } from '@kintone/rest-api-client';
 const kintoneRestAPIClient = new KintoneRestAPIClient();
 
 export default class recordsGetter {
-  static getFromAllReferenceTables(referenceTables, selfRecord) {
+  static getFromAllReferenceTables(referenceTables, selfRecord): Promise<{records:Record[],totalCount: number}[]> {
     return Promise.all(referenceTables.map(referenceTable => this.getFromSingleReferenceTable(referenceTable, selfRecord)));
   }
   static getFromSingleReferenceTable(referenceTable, selfRecord) {

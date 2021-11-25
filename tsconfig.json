@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+      "allowSyntheticDefaultImports": true,
+      "noFallthroughCasesInSwitch": true,
+      "noUnusedParameters": true,
+      "noImplicitReturns": true,
+      "esModuleInterop": true,
+      "moduleResolution": "Node",
+      "noUnusedLocals": true,
+      "noImplicitAny": false,
+      "declarationDir": "dist/types",
+      "declaration": true,
+      "target": "es2015",
+      "module": "es2015",
+      "jsx":"react-jsx",
+      "strict": true,
+      "outDir": "build/"
+    },
+    "files": [
+        "./node_modules/@kintone/dts-gen/kintone.d.ts",
+    ],
+    "include": [
+      "src/**/*"
+    ],
+    "exclude": [
+      "node_modules",
+      "dist",
+      "plugin"
+    ]
+  }

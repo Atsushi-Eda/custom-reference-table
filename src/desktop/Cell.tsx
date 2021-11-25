@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 // import moment from "moment";
 import  luxon  from "luxon";
 import UserCell from './UserCell';
@@ -21,7 +21,7 @@ const Cell = ({type, value, property}) => {
     return <div>{value.map((v, i) => <div key={i}>{v}</div>)}</div>;
   }else if(['DATETIME'].includes(type)){
     // return <div>{moment(value).isValid() ? moment(value).format('YYYY-MM-DD HH:mm') : value}</div>;
-    return <div>{luxon.DateTime.fromObject(value).isValid() ? luxon.DateTime.fromObject(value).toFormat('YYYY-MM-DD HH:mm') : value}</div>;
+    return <div>{luxon.DateTime.fromObject(value).isValid ? luxon.DateTime.fromObject(value).toFormat('YYYY-MM-DD HH:mm') : value}</div>;
   }else if(['FILE'].includes(type)){
     return <FilesCell files={value} />;
   }else if(['LINK'].includes(type)){

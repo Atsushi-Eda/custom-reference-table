@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import {Text, Button} from '@kintone/kintone-ui-component';
 
 const AppCell = props => {

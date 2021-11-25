@@ -4,8 +4,8 @@ const KintonePlugin = require('@kintone/webpack-plugin-kintone-plugin');
 module.exports = [
   {
     entry: {
-      "config.min": './src/config/index.jsx',
-      "desktop.min": './src/desktop/index.jsx',
+      "config.min": './src/config/index.tsx',
+      "desktop.min": './src/desktop/index.tsx',
     },
     output: {
       path: path.resolve(__dirname, 'plugin'),
@@ -14,7 +14,7 @@ module.exports = [
     module: {
       rules: [
         {
-          test: /(\.js|\.jsx)$/,
+          test: /\.(ts|tsx)$/,
           exclude: /(node_modules|bower_components)/,
           use: {
             loader: 'babel-loader',
@@ -43,7 +43,7 @@ module.exports = [
       })
     ],
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.ts', '.tsx', '.js', '.json']
     },
     devServer: {
       disableHostCheck: true

@@ -1,14 +1,16 @@
-import React from 'react';
-import {Table, Dropdown} from '@kintone/kintone-ui-component';
+// import React from 'react';
+import { Table, Dropdown } from '@kintone/kintone-ui-component';
 import fieldsFilter from './fieldsFilter';
 import selectItemManager from './selectItemManager';
+// @ts-ignore
+import { DispatchParams } from "@kintone/kintone-ui-component/esm/react/Table";
 
 const SortsCell = props => {
   const operators = ['asc', 'desc'];
   const value = props.value || [{}];
   const columns = [{
     header: 'field',
-    cell: ({rowIndex, onCellChange}) =>
+    cell: ({ rowIndex, onCellChange }: DispatchParams) =>
       <Dropdown
         items={selectItemManager.createItemsForFields(fieldsFilter.sort(props.fields))}
         value={selectItemManager.getValueForFields(fieldsFilter.sort(props.fields), value[rowIndex].field)}
@@ -16,10 +18,10 @@ const SortsCell = props => {
       />
   }, {
     header: 'operator',
-    cell: ({rowIndex, onCellChange}) =>
+    cell: ({ rowIndex, onCellChange }: DispatchParams) =>
       <Dropdown
         items={selectItemManager.createItems(operators)}
-        value={selectItemManager.getValue(operators, value[rowIndex].operator)}
+        value={selectItemManager.getValue({ unFormattedItems: operators, value: value[rowIndex].operator })}
         onChange={newValue => onCellChange(newValue, value, rowIndex, 'operator')}
       />
   }];
@@ -28,9 +30,9 @@ const SortsCell = props => {
       columns={columns}
       data={value}
       defaultRowData={{}}
-      onRowAdd={({data}) => props.onChange(data)}
-      onRowRemove={({data}) => props.onChange(data)}
-      onCellChange={({data}) => props.onChange(data)}
+      onRowAdd={({ data }) => props.onChange(data)}
+      onRowRemove={({ data }) => props.onChange(data)}
+      onCellChange={({ data }) => props.onChange(data)}
     />
   );
 };

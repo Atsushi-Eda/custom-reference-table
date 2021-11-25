@@ -1,10 +1,10 @@
 export default class selectItemManager {
-  static createItems (unFormattedItems, type = null) {
+  static createItems(unFormattedItems, type:string | null = null) {
     let items = [{
       label: '-----',
       value: ''
     }];
-    if(Array.isArray(unFormattedItems)) {
+    if (Array.isArray(unFormattedItems)) {
       items.push(...unFormattedItems.map(unFormattedItem => (
         type === 'fields' ? {
           label: unFormattedItem.label,
@@ -17,15 +17,15 @@ export default class selectItemManager {
     }
     return items;
   }
-  static getValue (unFormattedItems, value = '', type = null) {
+  static getValue({ unFormattedItems, value = '', type = null }: { unFormattedItems; value?: string; type?: string | null; }) {
     return (Array.isArray(unFormattedItems) && unFormattedItems.find(unFormattedItem => (
       type === 'fields' ? unFormattedItem.code === value : unFormattedItem === value
     ))) ? value : '';
   }
-  static createItemsForFields (unFormattedItems) {
+  static createItemsForFields(unFormattedItems) {
     return this.createItems(unFormattedItems, 'fields')
   }
-  static getValueForFields (unFormattedItems, value = '') {
-    return this.getValue(unFormattedItems, value, 'fields');
+  static getValueForFields(unFormattedItems, value = '') {
+    return this.getValue({ unFormattedItems, value, type: 'fields' });
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import ReactDOM from 'react-dom';
 import { Label, Table } from '@kintone/kintone-ui-component';
 import IdCell from './IdCell';
@@ -6,9 +6,12 @@ import Cell from './Cell';
 import recordsGetter from "./recordsGetter";
 import appGetter from "./appGetter";
 import formFieldsGetter from "./formFieldsGetter";
+// import { AppID, RecordID, Revision, Properties, Lang, Layout } from "@kintone/rest-api-client/lib/client/types";
+
 
 (PLUGIN_ID => {
   const referenceTables = JSON.parse(kintone.plugin.app.getConfig(PLUGIN_ID)?.referenceTables || '[]');
+  // @ts-ignore
   window.customReferenceTablePlugin = {
     getRecordsFromSingleReferenceTable: (index, selfRecord) => recordsGetter.getFromSingleReferenceTable(referenceTables[index], selfRecord),
     getRecordsFromAllReferenceTables: selfRecord => recordsGetter.getFromAllReferenceTables(referenceTables, selfRecord)
