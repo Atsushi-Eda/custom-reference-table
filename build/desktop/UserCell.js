@@ -1,6 +1,7 @@
-import { jsx as _jsx } from "react/jsx-runtime";
-// import React from 'react';
+// @ts-ignore
+import React from 'react';
 const UserCell = ({ user }) => {
-    return _jsx("div", { children: _jsx("a", Object.assign({ target: '_blank', href: `${location.origin}/k/#/people/user/${user.code}` }, { children: user.name }), void 0) }, void 0);
+    return React.createElement("div", null,
+        React.createElement("a", { target: '_blank', href: `${location.origin}/k/#/people/user/${user.code}` }, user.name));
 };
 export default UserCell;

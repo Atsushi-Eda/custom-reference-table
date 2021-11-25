@@ -1,7 +1,10 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-// import React from 'react';
+// @ts-ignore
+import React from 'react';
 import { Text, Button } from '@kintone/kintone-ui-component';
 const AppCell = props => {
-    return (_jsxs("div", { children: [_jsx(Text, { value: props.value || '', placeholder: 'app id', onChange: props.onChange }, void 0), _jsx(Text, { value: props.appName || '', isDisabled: true, placeholder: 'app name' }, void 0), _jsx(Button, { text: 'search', type: 'submit', onClick: props.onSearch(props.value) }, void 0)] }, void 0));
+    return (React.createElement("div", null,
+        React.createElement(Text, { value: props.value || '', placeholder: 'app id', onChange: props.onChange }),
+        React.createElement(Text, { value: props.appName || '', isDisabled: true, placeholder: 'app name' }),
+        React.createElement(Button, { text: 'search', type: 'submit', onClick: props.onSearch(props.value) })));
 };
 export default AppCell;

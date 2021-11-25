@@ -1,4 +1,5 @@
-// import React from 'react';
+// @ts-ignore
+import React from 'react';
 // import moment from "moment";
 import  luxon  from "luxon";
 import UserCell from './UserCell';

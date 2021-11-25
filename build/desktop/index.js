@@ -1,5 +1,5 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-// import React from 'react';
+// @ts-ignore
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Label, Table } from '@kintone/kintone-ui-component';
 import IdCell from './IdCell';
@@ -36,16 +36,18 @@ import formFieldsGetter from "./formFieldsGetter";
                 domRoot.id = 'custom-reference-table-plugin-' + index;
                 domRoot.classList.add(event.type === 'app.record.detail.show' ? 'custom-reference-table-plugin-detail' : 'custom-reference-table-plugin-print');
                 space.appendChild(domRoot);
-                ReactDOM.render(_jsxs("div", { children: [_jsx(Label, { text: app.name }, void 0), _jsx(Table, { columns: [
-                                ...(event.type === 'app.record.detail.show' ? [{
-                                        header: 'id',
-                                        cell: ({ rowIndex }) => _jsx(IdCell, { app: referenceTable.app, "$id": records[rowIndex].$id.value }, void 0)
-                                    }] : []),
-                                ...referenceTable.shows.map(({ field }) => ({
-                                    header: properties[field].label,
-                                    cell: ({ rowIndex }) => _jsx(Cell, { type: records[rowIndex][field].type, value: records[rowIndex][field].value, property: properties[field] }, void 0)
-                                }))
-                            ], data: records, actionButtonsShown: false }, void 0)] }, void 0), domRoot);
+                ReactDOM.render(React.createElement("div", null,
+                    React.createElement(Label, { text: app.name }),
+                    React.createElement(Table, { columns: [
+                            ...(event.type === 'app.record.detail.show' ? [{
+                                    header: 'id',
+                                    cell: ({ rowIndex }) => React.createElement(IdCell, { app: referenceTable.app, "$id": records[rowIndex].$id.value })
+                                }] : []),
+                            ...referenceTable.shows.map(({ field }) => ({
+                                header: properties[field].label,
+                                cell: ({ rowIndex }) => React.createElement(Cell, { type: records[rowIndex][field].type, value: records[rowIndex][field].value, property: properties[field] })
+                            }))
+                        ], data: records, actionButtonsShown: false })), domRoot);
             });
         });
     });

@@ -1,26 +1,27 @@
 import React from 'react';
 import { AppID } from "@kintone/rest-api-client/lib/client/types";
+import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 interface IRootPropsType {
-    savedValue: ({
+    savedValue: {
         app: AppID;
-    } | any)[];
-    selfFields: any;
-    spaceIds: any;
+    }[];
+    selfFields: OneOf[];
+    spaceIds: string[];
+}
+interface ITargetApp {
+    id: string;
+    name: string;
+    fields: OneOf[] | null;
 }
 export default class Root extends React.Component<IRootPropsType, {
-    value: any;
-    targetApps: {
-        id: string;
-        name: string;
-        fields: any[] | null;
-    }[];
+    value: ({
+        app: AppID;
+        space: string;
+    } | any)[];
+    targetApps: ITargetApp[];
 }> {
     constructor(props: IRootPropsType);
-    emptyTargetApp: {
-        id: string;
-        name: string;
-        fields: null;
-    };
+    emptyTargetApp: ITargetApp;
     addTargetApp: (targetApp: any, rowIndex: any) => void;
     addEmptyTargetApp: (rowIndex: any) => void;
     removeTargetApp: (rowIndex: any) => void;

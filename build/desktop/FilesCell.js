@@ -1,5 +1,5 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-// import React from 'react';
+// @ts-ignore
+import React from 'react';
 // import {Connection, File} from '@kintone/kintone-js-sdk';
 // const kintoneFile = new File(new Connection);
 import { KintoneRestAPIClient } from '@kintone/rest-api-client';
@@ -14,6 +14,10 @@ const FilesCell = ({ files }) => {
         });
         return false;
     };
-    return _jsx("div", { children: files.map(({ name, fileKey, size }, i) => _jsxs("div", { children: [_jsx("a", Object.assign({ onClick: () => downloadFile(name, fileKey) }, { children: name }), void 0), " (", size, " bytes)"] }, i)) }, void 0);
+    return React.createElement("div", null, files.map(({ name, fileKey, size }, i) => React.createElement("div", { key: i },
+        React.createElement("a", { onClick: () => downloadFile(name, fileKey) }, name),
+        " (",
+        size,
+        " bytes)")));
 };
 export default FilesCell;

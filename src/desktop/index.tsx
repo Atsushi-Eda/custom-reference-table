@@ -1,4 +1,5 @@
-// import React from 'react';
+// @ts-ignore
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Label, Table } from '@kintone/kintone-ui-component';
 import IdCell from './IdCell';

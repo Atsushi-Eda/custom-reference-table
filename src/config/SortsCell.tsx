@@ -1,4 +1,5 @@
-// import React from 'react';
+// @ts-ignore
+import React from 'react';
 import { Table, Dropdown } from '@kintone/kintone-ui-component';
 import fieldsFilter from './fieldsFilter';
 import selectItemManager from './selectItemManager';

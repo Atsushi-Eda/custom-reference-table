@@ -1,12 +1,22 @@
-// import React from 'react';
+// @ts-ignore
+import React from 'react';
 import { Table, Dropdown } from '@kintone/kintone-ui-component';
 import fieldsFilter from './fieldsFilter';
 import selectItemManager from './selectItemManager';
 import conditionOperatorsManager from './conditionOperatorsManager';
 // @ts-ignore
 import { DispatchParams } from "@kintone/kintone-ui-component/esm/react/Table";
+import {OneOf} from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 
-const ConditionsCell = props => {
+
+interface IConditionsCellProp {
+  value: { targetField: string, operator: string, selfField: string }[],
+  targetFields: OneOf[] | null,
+  selfFields: OneOf[],
+  onChange: (newState: DispatchParams) => void,
+}
+
+const ConditionsCell = (props: IConditionsCellProp) => {
   const value = props.value || [{}];
   const columns = [{
     header: 'target field',

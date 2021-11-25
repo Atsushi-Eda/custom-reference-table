@@ -9,32 +9,38 @@ import selectItemManager from './selectItemManager';
 // const kintoneApp = new App(new Connection);
 import { KintoneRestAPIClient } from '@kintone/rest-api-client';
 import { AppID } from "@kintone/rest-api-client/lib/client/types";
-
+import {OneOf} from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 // @ts-ignore
 import { DispatchParams } from "@kintone/kintone-ui-component/esm/react/Table";
 
 const kintoneRestAPIClient = new KintoneRestAPIClient();
 
 interface IRootPropsType {
-  savedValue: ({ app: AppID } | any)[],
-  selfFields: any,
-  spaceIds: any
+  savedValue: { app: AppID }[],
+  selfFields: OneOf[],
+  spaceIds: string[]
+}
+interface ITargetApp {
+  id: string,
+  name: string,
+  fields: OneOf[] | null
 }
 
 export default class Root extends React.Component<IRootPropsType,
-  { value: any, targetApps: { id: string, name: string, fields: any[] | null }[] }>
+  { value: ({app: AppID, space: string } | any)[], targetApps: ITargetApp[] }>
 {
   constructor(props: IRootPropsType) {
     super(props);
+    const stateValue = props.savedValue.length ? props.savedValue : [{}];
     this.state = {
-      value: props.savedValue.length ? props.savedValue : [{}],
-      targetApps: props.savedValue?.map(() => this.emptyTargetApp)
+      value: stateValue,
+      targetApps: stateValue.map(() => this.emptyTargetApp)
     }
     this.state.value.forEach(({ app }, rowIndex: number) => {
       if (app) this.searchApp(app, rowIndex);
     });
   }
-  emptyTargetApp = {
+  emptyTargetApp: ITargetApp = {
     id: '',
     name: '',
     fields: null

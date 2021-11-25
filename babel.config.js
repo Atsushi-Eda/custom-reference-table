@@ -8,8 +8,8 @@ module.exports = function (api) {
               "corejs": 3,
             }
         ],
-        '@babel/react',
-        "@babel/typescript"
+        "@babel/preset-react", 
+        "@babel/preset-typescript"
     ];
     const plugins = [
         [

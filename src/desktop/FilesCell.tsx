@@ -1,4 +1,5 @@
-// import React from 'react';
+// @ts-ignore
+import React from 'react';
 // import {Connection, File} from '@kintone/kintone-js-sdk';
 // const kintoneFile = new File(new Connection);
 import { KintoneRestAPIClient } from '@kintone/rest-api-client';

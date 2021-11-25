@@ -1,4 +1,3 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import React from 'react';
 import { Table, Dropdown, Button } from '@kintone/kintone-ui-component';
 import AppCell from './AppCell';
@@ -12,7 +11,6 @@ import { KintoneRestAPIClient } from '@kintone/rest-api-client';
 const kintoneRestAPIClient = new KintoneRestAPIClient();
 export default class Root extends React.Component {
     constructor(props) {
-        var _a;
         super(props);
         this.emptyTargetApp = {
             id: '',
@@ -67,9 +65,10 @@ export default class Root extends React.Component {
                 referenceTables: JSON.stringify(this.state.value)
             });
         };
+        const stateValue = props.savedValue.length ? props.savedValue : [{}];
         this.state = {
-            value: props.savedValue.length ? props.savedValue : [{}],
-            targetApps: (_a = props.savedValue) === null || _a === void 0 ? void 0 : _a.map(() => this.emptyTargetApp)
+            value: stateValue,
+            targetApps: stateValue.map(() => this.emptyTargetApp)
         };
         this.state.value.forEach(({ app }, rowIndex) => {
             if (app)
@@ -79,20 +78,22 @@ export default class Root extends React.Component {
     render() {
         const columns = [{
                 header: 'space',
-                cell: ({ rowIndex, onCellChange }) => _jsx(Dropdown, { items: selectItemManager.createItems(this.props.spaceIds), value: selectItemManager.getValue({ unFormattedItems: this.props.spaceIds, value: this.state.value[rowIndex].space }), onChange: newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'space') }, void 0)
+                cell: ({ rowIndex, onCellChange }) => React.createElement(Dropdown, { items: selectItemManager.createItems(this.props.spaceIds), value: selectItemManager.getValue({ unFormattedItems: this.props.spaceIds, value: this.state.value[rowIndex].space }), onChange: newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'space') })
             }, {
                 header: 'app',
-                cell: ({ rowIndex, onCellChange }) => _jsx(AppCell, { value: this.state.value[rowIndex].app, appName: this.state.targetApps[rowIndex].name, onSearch: appId => () => this.searchApp(appId, rowIndex), onChange: newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'app') }, void 0)
+                cell: ({ rowIndex, onCellChange }) => React.createElement(AppCell, { value: this.state.value[rowIndex].app, appName: this.state.targetApps[rowIndex].name, onSearch: appId => () => this.searchApp(appId, rowIndex), onChange: newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'app') })
             }, {
                 header: 'conditions',
-                cell: ({ rowIndex, onCellChange }) => _jsx(ConditionsCell, { value: this.state.value[rowIndex].conditions, targetFields: this.state.targetApps[rowIndex].fields, selfFields: this.props.selfFields, onChange: newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'conditions') }, void 0)
+                cell: ({ rowIndex, onCellChange }) => React.createElement(ConditionsCell, { value: this.state.value[rowIndex].conditions, targetFields: this.state.targetApps[rowIndex].fields, selfFields: this.props.selfFields, onChange: newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'conditions') })
             }, {
                 header: 'shows',
-                cell: ({ rowIndex, onCellChange }) => _jsx(ShowsCell, { value: this.state.value[rowIndex].shows, fields: this.state.targetApps[rowIndex].fields, onChange: newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'shows') }, void 0)
+                cell: ({ rowIndex, onCellChange }) => React.createElement(ShowsCell, { value: this.state.value[rowIndex].shows, fields: this.state.targetApps[rowIndex].fields, onChange: newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'shows') })
             }, {
                 header: 'sorts',
-                cell: ({ rowIndex, onCellChange }) => _jsx(SortsCell, { value: this.state.value[rowIndex].sorts, fields: this.state.targetApps[rowIndex].fields, onChange: newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'sorts') }, void 0)
+                cell: ({ rowIndex, onCellChange }) => React.createElement(SortsCell, { value: this.state.value[rowIndex].sorts, fields: this.state.targetApps[rowIndex].fields, onChange: newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'sorts') })
             }];
-        return (_jsxs("div", { children: [_jsx(Table, { columns: columns, data: this.state.value, defaultRowData: {}, onRowAdd: this.handleRowAdd, onRowRemove: this.handleRowRemove, onCellChange: this.handleCellChange }, void 0), _jsx(Button, { text: 'save', type: 'submit', onClick: this.save }, void 0)] }, void 0));
+        return (React.createElement("div", null,
+            React.createElement(Table, { columns: columns, data: this.state.value, defaultRowData: {}, onRowAdd: this.handleRowAdd, onRowRemove: this.handleRowRemove, onCellChange: this.handleCellChange }),
+            React.createElement(Button, { text: 'save', type: 'submit', onClick: this.save })));
     }
 }
