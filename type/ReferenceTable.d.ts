@@ -25,5 +25,5 @@ export interface IReferenceTable {
     app: AppID,
     conditions: IConditionSpec[],
     shows: { field: string }[],
-    sorts: ISortSpec[]
+    sorts?: ISortSpec[]
 }
