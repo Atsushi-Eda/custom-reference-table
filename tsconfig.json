@@ -18,10 +18,11 @@
     },
     "files": [
         "./node_modules/@kintone/dts-gen/kintone.d.ts",
+        "./type/ReferenceTable.d.ts"
     ],
     "include": [
       "src/**/*"
-    ],
+, "type/ReferenceTable.d.ts"    ],
     "exclude": [
       "node_modules",
       "dist",

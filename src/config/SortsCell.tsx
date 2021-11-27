@@ -1,29 +1,34 @@
 // @ts-ignore
 import React from 'react';
-import { Table, Dropdown } from '@kintone/kintone-ui-component';
+import { Table, Dropdown, TableColumn } from '@kintone/kintone-ui-component';
 import fieldsFilter from './fieldsFilter';
 import selectItemManager from './selectItemManager';
-// @ts-ignore
-import { DispatchParams } from "@kintone/kintone-ui-component/esm/react/Table";
+import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 
-const SortsCell = props => {
+interface ISortsCellProps {
+  value: Array<Record<string, any>>,
+  fields: OneOf[] | null,
+  onChange: (_data?: Array<Record<string, any>>) => void
+}
+
+const SortsCell = (props: ISortsCellProps) => {
   const operators = ['asc', 'desc'];
   const value = props.value || [{}];
-  const columns = [{
+  const columns: TableColumn[] = [{
     header: 'field',
-    cell: ({ rowIndex, onCellChange }: DispatchParams) =>
+    cell: ({ rowIndex, onCellChange }) =>
       <Dropdown
         items={selectItemManager.createItemsForFields(fieldsFilter.sort(props.fields))}
-        value={selectItemManager.getValueForFields(fieldsFilter.sort(props.fields), value[rowIndex].field)}
-        onChange={newValue => onCellChange(newValue, value, rowIndex, 'field')}
+        value={selectItemManager.getValueForFields(fieldsFilter.sort(props.fields), value[rowIndex || 0].field)}
+        onChange={newValue => onCellChange && onCellChange(newValue, value, rowIndex, 'field')}
       />
   }, {
     header: 'operator',
-    cell: ({ rowIndex, onCellChange }: DispatchParams) =>
+    cell: ({ rowIndex, onCellChange }) =>
       <Dropdown
         items={selectItemManager.createItems(operators)}
-        value={selectItemManager.getValue({ unFormattedItems: operators, value: value[rowIndex].operator })}
-        onChange={newValue => onCellChange(newValue, value, rowIndex, 'operator')}
+        value={selectItemManager.getValue({ unFormattedItems: operators, value: value[rowIndex || 0].operator })}
+        onChange={newValue => onCellChange && onCellChange(newValue, value, rowIndex, 'operator')}
       />
   }];
   return (

@@ -17,7 +17,6 @@
       "desktop.min.js"
     ],
     "css": [
-      "desktop.css"
     ]
   },
   "config": {
@@ -26,7 +25,6 @@
       "config.min.js"
     ],
     "css": [
-      "config.css"
     ]
   }
 }

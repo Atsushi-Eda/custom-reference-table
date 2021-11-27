@@ -1,5 +1,8 @@
+import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
+import { IConditionSpec, TOperatorString } from '../../type/ReferenceTable';
+
 export default class conditionOperatorsManager {
-  static mapper = new Map([
+  static mapper = new Map<string,TOperatorString[]>([
     ['RECORD_NUMBER', ['=', '!=', '>', '<', '>=', '<=', 'in', 'not in']],
     ['CREATOR', ['in', 'not in']],
     ['CREATED_TIME', ['=', '!=', '>', '<', '>=', '<=']],
@@ -26,9 +29,8 @@ export default class conditionOperatorsManager {
     ['STATUS_ASSIGNEE', ['in', 'not in']],
     ['CATEGORY', ['in', 'not in']]
   ])
-  static get (targetFields, value, rowIndex) {
-    if(!value[rowIndex].targetField) return null;
-    if(!targetFields) return null;
-    return this.mapper.get(targetFields.find(targetField => targetField.code === value[rowIndex].targetField).type);
+  static get(targetFields: OneOf[] | null | undefined, value: IConditionSpec[], rowIndex: number) {
+    if (!value[rowIndex] || !value[rowIndex].targetField || !targetFields) return null;
+    else return this.mapper.get((targetFields.find(targetField => targetField.code === value[rowIndex].targetField) as OneOf).type) as TOperatorString[];
   }
 }

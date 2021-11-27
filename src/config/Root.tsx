@@ -8,37 +8,45 @@ import selectItemManager from './selectItemManager';
 // import {Connection, App} from '@kintone/kintone-js-sdk';
 // const kintoneApp = new App(new Connection);
 import { KintoneRestAPIClient } from '@kintone/rest-api-client';
-import { AppID } from "@kintone/rest-api-client/lib/client/types";
-import {OneOf} from "@kintone/rest-api-client/lib/KintoneFields/types/property";
+// import { AppID } from "@kintone/rest-api-client/lib/client/types";
+import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 // @ts-ignore
 import { DispatchParams } from "@kintone/kintone-ui-component/esm/react/Table";
+import { IReferenceTable } from '../../type/ReferenceTable';
 
 const kintoneRestAPIClient = new KintoneRestAPIClient();
 
 interface IRootPropsType {
-  savedValue: { app: AppID }[],
+  savedValue: IReferenceTable[],
   selfFields: OneOf[],
   spaceIds: string[]
 }
+
 interface ITargetApp {
   id: string,
   name: string,
   fields: OneOf[] | null
 }
 
-export default class Root extends React.Component<IRootPropsType,
-  { value: ({app: AppID, space: string } | any)[], targetApps: ITargetApp[] }>
+interface IRootState {
+  value: IReferenceTable[],
+  targetApps: ITargetApp[]
+}
+
+export default class Root extends React.Component<IRootPropsType, IRootState>
 {
   constructor(props: IRootPropsType) {
     super(props);
-    const stateValue = props.savedValue.length ? props.savedValue : [{}];
+    // @ts-ignore
+    const stateValue: IReferenceTable[] = props.savedValue?.length ? props.savedValue : [{}];
     this.state = {
       value: stateValue,
       targetApps: stateValue.map(() => this.emptyTargetApp)
-    }
-    this.state.value.forEach(({ app }, rowIndex: number) => {
+    };
+    (this.state.value as IReferenceTable[]).forEach(({ app }, rowIndex: number) => {
       if (app) this.searchApp(app, rowIndex);
     });
+    // console.log("at config Root constructor this.state=", this.state)
   }
   emptyTargetApp: ITargetApp = {
     id: '',
@@ -62,6 +70,7 @@ export default class Root extends React.Component<IRootPropsType,
     const targetApps = [...this.state.targetApps];
     targetApps[rowIndex] = targetApp;
     this.setState({ targetApps });
+    console.log("at editTargetApp this.state.value=", this.state.value)
   }
   searchApp = (appId, rowIndex) => {
     Promise.all([
@@ -72,7 +81,7 @@ export default class Root extends React.Component<IRootPropsType,
         id: appId,
         name: name,
         fields: Object.values(properties)
-      }, rowIndex);
+      } as ITargetApp, rowIndex);
     }).catch(e => {
       alert(e);
     });
@@ -92,6 +101,7 @@ export default class Root extends React.Component<IRootPropsType,
     kintone.plugin.app.setConfig({
       referenceTables: JSON.stringify(this.state.value)
     });
+    console.log("at save this.state.value=", this.state.value)
   }
   render() {
     const columns: TableColumn[] = [{
@@ -99,7 +109,7 @@ export default class Root extends React.Component<IRootPropsType,
       cell: ({ rowIndex, onCellChange }) =>
         <Dropdown
           items={selectItemManager.createItems(this.props.spaceIds)}
-          value={selectItemManager.getValue({ unFormattedItems: this.props.spaceIds, value: this.state.value[rowIndex as number].space })}
+          value={selectItemManager.getValue({ unFormattedItems: this.props.spaceIds, value: this.state.value[rowIndex || 0].space })}
           onChange={newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'space')}
         />
     }, {
@@ -108,7 +118,7 @@ export default class Root extends React.Component<IRootPropsType,
         <AppCell
           value={this.state.value[rowIndex as number].app}
           appName={this.state.targetApps[rowIndex as number].name}
-          onSearch={appId => () => this.searchApp(appId, rowIndex)}
+          onSearch={appId => this.searchApp(appId, rowIndex)}
           onChange={newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'app')}
         />
     }, {

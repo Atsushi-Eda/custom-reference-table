@@ -4,22 +4,24 @@ import React from 'react';
 import  luxon  from "luxon";
 import UserCell from './UserCell';
 import FilesCell from './FilesCell';
+import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
+import * as KintoneFieldsProperty from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 
-const Cell = ({type, value, property}) => {
+const Cell = ({type, value, property}: {type: string, value: any, property: OneOf }) => {
   if(['CREATOR', 'MODIFIER'].includes(type)){
     return <UserCell user={value} />;
   }else if(['NUMBER', 'CALC'].includes(type)){
     return <div style={{textAlign: 'right'}}>
-      {property.unitPosition === 'BEFORE' ? `${property.unit} ` : ''}
+      {(property as KintoneFieldsProperty.Number).unitPosition === 'BEFORE' ? `${(property as KintoneFieldsProperty.Number).unit} ` : ''}
       {value}
-      {property.unitPosition === 'AFTER' ? ` ${property.unit}` : ''}
+      {(property as KintoneFieldsProperty.Number).unitPosition === 'AFTER' ? ` ${(property as KintoneFieldsProperty.Number).unit}` : ''}
     </div>;
   }else if(['MULTI_LINE_TEXT'].includes(type)){
     return <div style={{whiteSpace: 'pre'}}>{value}</div>;
   }else if(['RICH_TEXT'].includes(type)){
     return <div dangerouslySetInnerHTML={{__html: value}}></div>;
   }else if(['CHECK_BOX', 'MULTI_SELECT', 'CATEGORY'].includes(type)){
-    return <div>{value.map((v, i) => <div key={i}>{v}</div>)}</div>;
+    return <div>{(value).map((v, i) => <div key={i}>{v}</div>)}</div>;
   }else if(['DATETIME'].includes(type)){
     // return <div>{moment(value).isValid() ? moment(value).format('YYYY-MM-DD HH:mm') : value}</div>;
     return <div>{luxon.DateTime.fromObject(value).isValid ? luxon.DateTime.fromObject(value).toFormat('YYYY-MM-DD HH:mm') : value}</div>;
@@ -28,8 +30,8 @@ const Cell = ({type, value, property}) => {
   }else if(['LINK'].includes(type)){
     return <div>
       <a
-        href={(property.protocol === 'CALL' ? 'callto:' : (property.protocol === 'MAIL' ? 'mailto:' : '')) + value}
-        target={property.protocol === 'WEB' ? '_blank:' :  ''}
+        href={((property as KintoneFieldsProperty.Link).protocol === 'CALL' ? 'callto:' : ((property as KintoneFieldsProperty.Link).protocol === 'MAIL' ? 'mailto:' : '')) + value}
+        target={(property as KintoneFieldsProperty.Link).protocol === 'WEB' ? '_blank:' :  ''}
       >
         {value}
       </a>

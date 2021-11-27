@@ -5,9 +5,9 @@ import React from 'react';
 import { KintoneRestAPIClient } from '@kintone/rest-api-client';
 const kintoneRestAPIClient = new KintoneRestAPIClient();
 
-const FilesCell = ({files}) => {
-  const downloadFile = (name, fileKey) => {
-    kintoneRestAPIClient.file.downloadFile({fileKey}).then(blob => {
+const FilesCell = ({ files }: { files: { name: string, fileKey: string, size: number }[] }) => {
+  const downloadFile = (name: string, fileKey: string) => {
+    kintoneRestAPIClient.file.downloadFile({ fileKey }).then(blob => {
       const downloadLink = document.createElement('a');
       downloadLink.href = URL.createObjectURL(blob as any);
       downloadLink.download = name;
@@ -16,7 +16,7 @@ const FilesCell = ({files}) => {
     return false;
   }
   return <div>{
-    files.map(({name, fileKey, size}, i) =>
+    files.map(({ name, fileKey, size }, i) =>
       <div key={i}><a onClick={() => downloadFile(name, fileKey)}>{name}</a> ({size} bytes)</div>
     )
   }</div>;

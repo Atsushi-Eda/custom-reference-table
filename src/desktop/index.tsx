@@ -1,17 +1,19 @@
 // @ts-ignore
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Label, Table } from '@kintone/kintone-ui-component';
+import { Label, Table, TableColumn } from '@kintone/kintone-ui-component';
 import IdCell from './IdCell';
 import Cell from './Cell';
 import recordsGetter from "./recordsGetter";
 import appGetter from "./appGetter";
 import formFieldsGetter from "./formFieldsGetter";
 // import { AppID, RecordID, Revision, Properties, Lang, Layout } from "@kintone/rest-api-client/lib/client/types";
-
+// import { AppID } from "@kintone/rest-api-client/lib/client/types";
+import * as KintoneFieldsField from "@kintone/rest-api-client/lib/KintoneFields/types/field";
+import { IReferenceTable } from '../../type/ReferenceTable';
 
 (PLUGIN_ID => {
-  const referenceTables = JSON.parse(kintone.plugin.app.getConfig(PLUGIN_ID)?.referenceTables || '[]');
+  const referenceTables: IReferenceTable[] = JSON.parse(kintone.plugin.app.getConfig(PLUGIN_ID)?.referenceTables || '[]');
   // @ts-ignore
   window.customReferenceTablePlugin = {
     getRecordsFromSingleReferenceTable: (index, selfRecord) => recordsGetter.getFromSingleReferenceTable(referenceTables[index], selfRecord),
@@ -43,18 +45,18 @@ import formFieldsGetter from "./formFieldsGetter";
               columns={[
                 ...(event.type === 'app.record.detail.show' ? [{
                   header: 'id',
-                  cell: ({ rowIndex }) => <IdCell app={referenceTable.app} $id={records[rowIndex].$id.value} />
+                  cell: ({ rowIndex }: { rowIndex: number }) => <IdCell app={referenceTable.app} $id={(records[rowIndex].$id as KintoneFieldsField.ID).value} />
                 }] : []),
                 ...referenceTable.shows.map(({ field }) => ({
                   header: properties[field].label,
-                  cell: ({ rowIndex }) =>
+                  cell: ({ rowIndex }: { rowIndex: number }) =>
                     <Cell
                       type={records[rowIndex][field].type}
                       value={records[rowIndex][field].value}
                       property={properties[field]}
                     />
                 }))
-              ]}
+              ] as TableColumn[]}
               data={records}
               actionButtonsShown={false}
             />
@@ -62,6 +64,7 @@ import formFieldsGetter from "./formFieldsGetter";
           domRoot
         );
       });
+      console.log("at event " + event.type + " referenceTables=", referenceTables)
     });
   });
 })(kintone.$PLUGIN_ID);

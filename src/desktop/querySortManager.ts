@@ -1,5 +1,7 @@
+import { ISortSpec } from "../../type/ReferenceTable";
+
 export default class querySortManager {
-  static create (sorts) {
+  static create (sorts: ISortSpec[]) {
     if(!Array.isArray(sorts)) return '';
     return /*' order by ' +*/ sorts.filter(sort =>
       (sort.field && sort.operator)
@@ -7,7 +9,7 @@ export default class querySortManager {
       this.createUnit(sort)
     ).join(', ');
   }
-  static createUnit (sort) {
+  static createUnit (sort: ISortSpec) {
     return `${sort.field} ${sort.operator}`;
   }
 }

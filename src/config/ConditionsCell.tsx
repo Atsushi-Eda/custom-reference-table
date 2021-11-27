@@ -1,46 +1,38 @@
 // @ts-ignore
 import React from 'react';
-import { Table, Dropdown } from '@kintone/kintone-ui-component';
+import { Table, Dropdown, TableColumn } from '@kintone/kintone-ui-component';
 import fieldsFilter from './fieldsFilter';
 import selectItemManager from './selectItemManager';
 import conditionOperatorsManager from './conditionOperatorsManager';
-// @ts-ignore
-import { DispatchParams } from "@kintone/kintone-ui-component/esm/react/Table";
-import {OneOf} from "@kintone/rest-api-client/lib/KintoneFields/types/property";
-
-
-interface IConditionsCellProp {
-  value: { targetField: string, operator: string, selfField: string }[],
-  targetFields: OneOf[] | null,
-  selfFields: OneOf[],
-  onChange: (newState: DispatchParams) => void,
-}
+import { IConditionsCellProp, IConditionSpec } from '../../type/ReferenceTable';
 
 const ConditionsCell = (props: IConditionsCellProp) => {
-  const value = props.value || [{}];
-  const columns = [{
+  const value: Array<IConditionSpec> = props.value || [{}];
+  const columns: TableColumn[] = [{
     header: 'target field',
-    cell: ({ rowIndex, onCellChange }: DispatchParams) =>
+    cell: ({ rowIndex, onCellChange }) =>
       <Dropdown
         items={selectItemManager.createItemsForFields(fieldsFilter.conditionTarget(props.targetFields))}
-        value={selectItemManager.getValueForFields(fieldsFilter.conditionTarget(props.targetFields), value[rowIndex].targetField)}
-        onChange={newValue => onCellChange(newValue, value, rowIndex, 'targetField')}
+        value={selectItemManager.getValueForFields(fieldsFilter.conditionTarget(props.targetFields), value[rowIndex || 0].targetField)}
+        onChange={newValue => onCellChange && onCellChange(newValue, value, rowIndex, 'targetField')}
       />
   }, {
     header: 'operator',
-    cell: ({ rowIndex, onCellChange }: DispatchParams) =>
-      <Dropdown
-        items={selectItemManager.createItems(conditionOperatorsManager.get(props.targetFields, value, rowIndex))}
-        value={selectItemManager.getValue({ unFormattedItems: conditionOperatorsManager.get(props.targetFields, value, rowIndex), value: value[rowIndex].operator })}
-        onChange={newValue => onCellChange(newValue, value, rowIndex, 'operator')}
+    cell: ({ rowIndex, onCellChange }) => {
+      // console.log("conditionOperatorsManager.get(props.targetFields, value, rowIndex) =", props, rowIndex, conditionOperatorsManager.get(props.targetFields, value, rowIndex || 0))
+      return <Dropdown
+        items={selectItemManager.createItems(conditionOperatorsManager.get(props.targetFields, value, rowIndex || 0) as string[])}
+        value={selectItemManager.getValue({ unFormattedItems: conditionOperatorsManager.get(props.targetFields, value, rowIndex || 0) as string[], value: value[rowIndex || 0].operator })}
+        onChange={newValue => onCellChange && onCellChange(newValue, value, rowIndex, 'operator')}
       />
+    }
   }, {
     header: 'self field',
-    cell: ({ rowIndex, onCellChange }: DispatchParams) =>
+    cell: ({ rowIndex, onCellChange }) =>
       <Dropdown
         items={selectItemManager.createItemsForFields(fieldsFilter.conditionSelf(props.selfFields))}
-        value={selectItemManager.getValueForFields(fieldsFilter.conditionSelf(props.selfFields), value[rowIndex].selfField)}
-        onChange={newValue => onCellChange(newValue, value, rowIndex, 'selfField')}
+        value={selectItemManager.getValueForFields(fieldsFilter.conditionSelf(props.selfFields), value[rowIndex || 0].selfField)}
+        onChange={newValue => onCellChange && onCellChange(newValue, value, rowIndex, 'selfField')}
       />
   }];
   return (
@@ -48,9 +40,9 @@ const ConditionsCell = (props: IConditionsCellProp) => {
       columns={columns}
       data={value}
       defaultRowData={{}}
-      onRowAdd={({ data }) => props.onChange(data)}
-      onRowRemove={({ data }) => props.onChange(data)}
-      onCellChange={({ data }) => props.onChange(data)}
+      onRowAdd={({ data }) => props.onChange(data as typeof value)}
+      onRowRemove={({ data }) => props.onChange(data as typeof value)}
+      onCellChange={({ data }) => props.onChange(data as typeof value)}
     />
   );
 };
