@@ -13,7 +13,14 @@ import * as KintoneFieldsField from "@kintone/rest-api-client/lib/KintoneFields/
 import { IReferenceTable } from '../../type/ReferenceTable';
 
 (PLUGIN_ID => {
-  const referenceTables: IReferenceTable[] = JSON.parse(kintone.plugin.app.getConfig(PLUGIN_ID)?.referenceTables || '[]');
+  const referenceTables: IReferenceTable[] = JSON.parse(kintone.plugin.app.getConfig(PLUGIN_ID)?.referenceTables || '[]')
+    .filter(referenceTable => (referenceTable &&
+      referenceTable.app &&
+      referenceTable.space &&
+      Array.isArray(referenceTable.conditions) &&
+      // !Array.isArray(referenceTable.sorts) || // sort指定は無くても良い
+      Array.isArray(referenceTable.shows) // 設定画面で編集途中の関連テーブル定義を除外する
+    ));
   // @ts-ignore
   window.customReferenceTablePlugin = {
     getRecordsFromSingleReferenceTable: (index, selfRecord) => recordsGetter.getFromSingleReferenceTable(referenceTables[index], selfRecord),
