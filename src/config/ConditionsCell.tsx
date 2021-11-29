@@ -22,7 +22,7 @@ const ConditionsCell = (props: IConditionsCellProp) => {
       // console.log("conditionOperatorsManager.get(props.targetFields, value, rowIndex) =", props, rowIndex, conditionOperatorsManager.get(props.targetFields, value, rowIndex || 0))
       return <Dropdown
         items={selectItemManager.createItems(conditionOperatorsManager.get(props.targetFields, value, rowIndex || 0) as string[])}
-        value={selectItemManager.getValue({ unFormattedItems: conditionOperatorsManager.get(props.targetFields, value, rowIndex || 0) as string[], value: value[rowIndex || 0].operator })}
+        value={selectItemManager.getValue({ unFormattedItems: conditionOperatorsManager.get(props.targetFields, value, rowIndex || 0) as string[], value: value[rowIndex || 0].operator }) as string}
         onChange={newValue => onCellChange && onCellChange(newValue, value, rowIndex, 'operator')}
       />
     }

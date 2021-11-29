@@ -3,13 +3,8 @@ import React from 'react';
 import { Table, Dropdown, TableColumn } from '@kintone/kintone-ui-component';
 import fieldsFilter from './fieldsFilter';
 import selectItemManager from './selectItemManager';
-import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
-
-interface ISortsCellProps {
-  value: Array<Record<string, any>>,
-  fields: OneOf[] | null,
-  onChange: (_data?: Array<Record<string, any>>) => void
-}
+// import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
+import { ISortsCellProps } from '../../type/ReferenceTable';
 
 const SortsCell = (props: ISortsCellProps) => {
   const operators = ['asc', 'desc'];
@@ -27,7 +22,7 @@ const SortsCell = (props: ISortsCellProps) => {
     cell: ({ rowIndex, onCellChange }) =>
       <Dropdown
         items={selectItemManager.createItems(operators)}
-        value={selectItemManager.getValue({ unFormattedItems: operators, value: value[rowIndex || 0].operator })}
+        value={selectItemManager.getValue({ unFormattedItems: operators, value: value[rowIndex || 0].operator }) as string}
         onChange={newValue => onCellChange && onCellChange(newValue, value, rowIndex, 'operator')}
       />
   }];

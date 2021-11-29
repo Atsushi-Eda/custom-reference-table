@@ -31,6 +31,6 @@ export default class conditionOperatorsManager {
   ])
   static get(targetFields: OneOf[] | null | undefined, value: IConditionSpec[], rowIndex: number) {
     if (!value[rowIndex] || !value[rowIndex].targetField || !targetFields) return null;
-    else return this.mapper.get((targetFields.find(targetField => targetField.code === value[rowIndex].targetField) as OneOf).type) as TOperatorString[];
+    else return this.mapper.get((targetFields.find(targetField => targetField.code === value[rowIndex].targetField) as OneOf)?.type) as TOperatorString[];
   }
 }
