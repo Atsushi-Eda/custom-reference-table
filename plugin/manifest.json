@@ -3,8 +3,8 @@
   "version": 1,
   "type": "APP",
   "name": {
-    "ja": "カスタム関連レコードプラグインkose",
-    "en": "custom reference table plugin"
+    "ja": "カスタム関連レコードプラグイン@Peer-connect版",
+    "en": "custom reference table plugin@Peer-connect"
   },
   "description": {
     "ja": "絞り込み条件の自由度が高い関連レコードです。",
