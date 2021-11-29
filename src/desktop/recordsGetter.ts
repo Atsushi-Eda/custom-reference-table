@@ -16,7 +16,7 @@ export default class recordsGetter {
       app: referenceTable.app,
       condition: queryCondition.create(referenceTable.conditions, selfRecord),
       orderBy: querySortManager.create(referenceTable.sorts),
-      fields: ['$id', ...referenceTable.shows.map(show => show.field)]
+      fields: ['$id', ...referenceTable.shows.map(show => show.code)]
     }).then(responce => ({ records: responce, totalCount: responce?.length }));
   }
 }

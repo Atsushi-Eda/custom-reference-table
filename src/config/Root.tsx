@@ -10,6 +10,7 @@ import selectItemManager from './selectItemManager';
 import { KintoneRestAPIClient } from '@kintone/rest-api-client';
 // import { AppID } from "@kintone/rest-api-client/lib/client/types";
 import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
+import * as KintoneFieldsProperty from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 // @ts-ignore
 import { DispatchParams } from "@kintone/kintone-ui-component/esm/react/Table";
 import { IReferenceTable } from '../../type/ReferenceTable';
@@ -66,7 +67,7 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
     targetApps.splice(rowIndex, 1);
     this.setState({ targetApps });
   }
-  editTargetApp = (targetApp, rowIndex) => {
+  editTargetApp = (targetApp: ITargetApp, rowIndex) => {
     const targetApps = [...this.state.targetApps];
     targetApps[rowIndex] = targetApp;
     this.setState({ targetApps });
@@ -97,11 +98,71 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
   handleCellChange = ({ data }) => {
     this.setState({ value: data });
   }
-  save = () => {
+  save = (e) => {
+    console.log("at save enterd this.state=", e, this.state)
     kintone.plugin.app.setConfig({
       referenceTables: JSON.stringify(this.state.value)
+    }, () => { // successCallback 関数が指定された場合、アプリ設定のプラグインの一覧画面には遷移しません。
+      console.log("at save kintone.plugin.app.setConfig successCallback enterd");
+      // console.log("at save kintone.plugin.app.setConfig called. continues..");
+      const updatePromise: Promise<any>[] = []; // 当該アプリの設定は更新していなくても、関連アプリのプロパティを更新している場合、saveで更新に追従する
+      let notFounds: string[] = [];
+      for (let rowIndex = 0; rowIndex < this.state.targetApps.length; rowIndex++) {
+        const targetApp = this.state.targetApps[rowIndex];
+        if ((targetApp.id === this.state.value[rowIndex].app) &&
+          (this.state.value[rowIndex]?.shows?.length)
+        ) {
+          this.state.value[rowIndex].appName = targetApp.name;
+          updatePromise.push(
+            kintoneRestAPIClient.app.getFormFields({ app: targetApp.id }) // this.state.value[rowIndex]?.shows?.length===0でも、targetApp.idの存在をチェックする
+              .then(fieldProperties => {
+                this.state.value[rowIndex].showFields = [];
+                this.state.value[rowIndex].shows.forEach(showSpec => {
+                  const curProp = fieldProperties.properties[showSpec.code];
+                  if (curProp) {
+                    (this.state.value[rowIndex].showFields).push({
+                      type: curProp.type,
+                      code: curProp.code,
+                      label: curProp.label,
+                      // 表示には不要な、ネストしているsubTable等のプロパティを除外してメモリ節約する
+                      minLength: (curProp as KintoneFieldsProperty.SingleLineText).minLength,
+                      maxLength: (curProp as KintoneFieldsProperty.SingleLineText).maxLength,
+                      format: (curProp as KintoneFieldsProperty.Calc).format,
+                      unit: (curProp as KintoneFieldsProperty.Number).unit,
+                      unitPosition: (curProp as KintoneFieldsProperty.Number).unitPosition,
+                      minValue: (curProp as KintoneFieldsProperty.Number).minValue,
+                      maxValue: (curProp as KintoneFieldsProperty.Number).maxValue,
+                      digit: (curProp as KintoneFieldsProperty.Number).digit,
+                      displayScale: (curProp as KintoneFieldsProperty.Number).displayScale,
+                      protocol: (curProp as KintoneFieldsProperty.Link).protocol,
+                      options: (curProp as KintoneFieldsProperty.CheckBox).options
+                    } as never);
+                  } else {
+                    notFounds.push(`関連テーブル${targetApp.name}にフィールドコード${showSpec.code}が在りません。`);
+                  }
+                })
+                if (this.state.value[rowIndex]?.shows?.length !== this.state.value[rowIndex]?.showFields?.length) {
+                  notFounds.push(`関連テーブルとして有効なフィールドの数が足りません。`);
+                }
+              })
+          );
+        }
+      }
+      console.log("at save updatePromise builded", updatePromise)
+      kintone.Promise.all(updatePromise).then(_ => {
+        console.log("at save this.state=", this.state)
+        if (notFounds.length > 0) {
+          throw new Error(notFounds.join("\n"));
+        }
+      }).then(_ => {
+        kintone.plugin.app.setConfig({ //  kintone.plugin.app.setConfig で設定できる key-value の value 値の合計は 256KB までです。
+          referenceTables: JSON.stringify(this.state.value)
+        }); // callbackが未指定または undefined か null が指定された場合、プラグイン設定情報の保存が完了したらアプリ設定のプラグインの一覧画面に遷移して設定完了メッセージを表示します。
+      }).catch(err => {
+        console.error(err) // targetApp.idが存在しなかった場合、または、this.state.value[rowIndex].shows[].codeが無かった場合
+      });
     });
-    console.log("at save this.state.value=", this.state.value)
+    console.log("at save leaved")
   }
   render() {
     const columns: TableColumn[] = [{
@@ -109,7 +170,7 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
       cell: ({ rowIndex, onCellChange }) =>
         <Dropdown
           items={selectItemManager.createItems(this.props.spaceIds)}
-          value={selectItemManager.getValue({ unFormattedItems: this.props.spaceIds, value: this.state.value[rowIndex || 0].space })}
+          value={selectItemManager.getValue({ unFormattedItems: this.props.spaceIds, value: this.state.value[rowIndex || 0].space }) as string}
           onChange={newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'space')}
         />
     }, {
