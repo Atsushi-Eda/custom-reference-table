@@ -25,8 +25,9 @@ const Cell = ({ type, value, property }: { type: string, value: any, property: O
   } else if (['CHECK_BOX', 'MULTI_SELECT', 'CATEGORY'].includes(type)) {
     return <div>{(value).map((v, i) => <div key={i}>{v}</div>)}</div>;
   } else if (['DATETIME'].includes(type)) {
+    // console.log("at Cell type=DATETIMEm, value=", value)
     // return <div>{moment(value).isValid() ? moment(value).format('YYYY-MM-DD HH:mm') : value}</div>;
-    return <div>{luxon.DateTime.fromObject(value).isValid ? luxon.DateTime.fromObject(value).toFormat('YYYY-MM-DD HH:mm') : value}</div>;
+    return <div>{luxon.DateTime.fromISO(value, {zone: 'utc'}).isValid ? luxon.DateTime.fromISO(value, {zone: 'utc'}).toFormat('yyyy-MM-dd HH:mm') : value}</div>;
   } else if (['FILE'].includes(type)) {
     return <FilesCell files={value} />;
   } else if (['LINK'].includes(type)) {
