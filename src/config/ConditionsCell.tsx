@@ -1,6 +1,7 @@
 // @ts-ignore
 import React from 'react';
-import { Table, Dropdown, TableColumn } from '@kintone/kintone-ui-component';
+import type { TableColumn } from '@kintone/kintone-ui-component'; // Table, Dropdown,
+import * as Kuc from '@kintone/kintone-ui-component';
 import fieldsFilter from './fieldsFilter';
 import selectItemManager from './selectItemManager';
 import conditionOperatorsManager from './conditionOperatorsManager';
@@ -11,7 +12,7 @@ const ConditionsCell = (props: IConditionsCellProp) => {
   const columns: TableColumn[] = [{
     header: 'target field',
     cell: ({ rowIndex, onCellChange }) =>
-      <Dropdown
+      <Kuc.Dropdown
         items={selectItemManager.createItemsForFields(fieldsFilter.conditionTarget(props.targetFields))}
         value={selectItemManager.getValueForFields(fieldsFilter.conditionTarget(props.targetFields), value[rowIndex || 0].targetField)}
         onChange={newValue => onCellChange && onCellChange(newValue, value, rowIndex, 'targetField')}
@@ -20,7 +21,7 @@ const ConditionsCell = (props: IConditionsCellProp) => {
     header: 'operator',
     cell: ({ rowIndex, onCellChange }) => {
       // console.log("conditionOperatorsManager.get(props.targetFields, value, rowIndex) =", props, rowIndex, conditionOperatorsManager.get(props.targetFields, value, rowIndex || 0))
-      return <Dropdown
+      return <Kuc.Dropdown
         items={selectItemManager.createItems(conditionOperatorsManager.get(props.targetFields, value, rowIndex || 0) as string[])}
         value={selectItemManager.getValue({ unFormattedItems: conditionOperatorsManager.get(props.targetFields, value, rowIndex || 0) as string[], value: value[rowIndex || 0].operator }) as string}
         onChange={newValue => onCellChange && onCellChange(newValue, value, rowIndex, 'operator')}
@@ -29,14 +30,14 @@ const ConditionsCell = (props: IConditionsCellProp) => {
   }, {
     header: 'self field',
     cell: ({ rowIndex, onCellChange }) =>
-      <Dropdown
+      <Kuc.Dropdown
         items={selectItemManager.createItemsForFields(fieldsFilter.conditionSelf(props.selfFields))}
         value={selectItemManager.getValueForFields(fieldsFilter.conditionSelf(props.selfFields), value[rowIndex || 0].selfField)}
         onChange={newValue => onCellChange && onCellChange(newValue, value, rowIndex, 'selfField')}
       />
   }];
   return (
-    <Table
+    <Kuc.Table
       columns={columns}
       data={value}
       defaultRowData={{}}

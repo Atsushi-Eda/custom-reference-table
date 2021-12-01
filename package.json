@@ -8,7 +8,7 @@
     "package": "kintone-plugin-packer --ppk private.ppk --out ./plugin.zip plugin",
     "build:package": "npm run build && npm run package",
     "build:dev:package": "npm run build:dev && npm run package",
-    "upload": "kintone-plugin-uploader ./plugin.zip "
+    "upload": "kintone-plugin-uploader ./plugin.zip --base-url https://devhvkpok.cybozu.com --username dev01 --password 12qwaszx####"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -48,6 +48,7 @@
   "dependencies": {
     "@kintone/kintone-ui-component": "^0.8.3",
     "@kintone/rest-api-client": "^2.0.26",
+    "kintone-ui-component": "^1.2.0",
     "luxon": "^2.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

@@ -1,4 +1,4 @@
-import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
+import type { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 export default class selectItemManager {
   static createItems(unFormattedItems: (string)[] | undefined) {
     // console.log("at selectItemManager createItems unFormattedItems=", unFormattedItems)

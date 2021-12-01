@@ -37,7 +37,9 @@ export interface IReferenceTable {
     space: string,
     app: AppID,
     appName: string,
+    subTitle: string,
     conditions: IConditionSpec[],
+    limit: number,
     shows: IShowsSpec[],  // config中の表示向けカラム
     showFields: Array<OneOf>,
         // & KintoneFieldsProperty.SingleLineText &

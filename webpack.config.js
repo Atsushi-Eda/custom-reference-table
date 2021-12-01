@@ -19,7 +19,7 @@ module.exports = [
           use: {
             loader: 'babel-loader',
             options: {
-              presets: [ '@babel/preset-env', '@babel/preset-react'],
+              presets: ['@babel/preset-env', '@babel/preset-react'],
             }
           }
         },
@@ -31,9 +31,25 @@ module.exports = [
           ]
         }
       ]
+      // noParse: [
+      //   require.resolve('react'),
+      //   require.resolve('react-dom'),
+      // ]
     },
     externals: {
       luxon: 'luxon',
+      // Kuc: 'Kuc',
+      // "kintone-ui-component": 'Kuc' // Error: Minified React error #130;
+      // 'react': {
+      //   root: 'React',
+      //   commonjs: 'react',
+      //   commonjs2: 'react',
+      // },
+      // 'react-dom': {
+      //   root: 'ReactDOM',
+      //   commonjs: 'react-dom',
+      //   commonjs2: 'react-dom',
+      // },
     },
     plugins: [
       new KintonePlugin({

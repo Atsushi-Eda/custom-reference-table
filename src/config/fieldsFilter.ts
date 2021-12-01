@@ -1,4 +1,4 @@
-import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
+import type { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 export default class fieldsFilter {
   static filter(fields: OneOf[] | null | undefined, removals: string[]) {
     return (fields || []).filter(field => !removals.includes(field.type));

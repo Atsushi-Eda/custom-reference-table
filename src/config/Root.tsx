@@ -1,5 +1,8 @@
 import React from 'react';
-import { Table, Dropdown, Button, TableColumn } from '@kintone/kintone-ui-component';
+import * as Kuc from '@kintone/kintone-ui-component'; // { Table, Dropdown, Button, TableColumn }
+// @ts-ignore
+import type { DispatchParams } from "kintone-ui-component/esm/react/Table";
+import type { TableColumn } from '@kintone/kintone-ui-component';
 import AppCell from './AppCell';
 import ConditionsCell from './ConditionsCell';
 import ShowsCell from './ShowsCell';
@@ -9,10 +12,8 @@ import selectItemManager from './selectItemManager';
 // const kintoneApp = new App(new Connection);
 import { KintoneRestAPIClient } from '@kintone/rest-api-client';
 // import { AppID } from "@kintone/rest-api-client/lib/client/types";
-import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
+import type { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 import * as KintoneFieldsProperty from "@kintone/rest-api-client/lib/KintoneFields/types/property";
-// @ts-ignore
-import { DispatchParams } from "@kintone/kintone-ui-component/esm/react/Table";
 import { IReferenceTable } from '../../type/ReferenceTable';
 
 const kintoneRestAPIClient = new KintoneRestAPIClient();
@@ -26,6 +27,7 @@ interface IRootPropsType {
 interface ITargetApp {
   id: string,
   name: string,
+  subTitle: string,
   fields: OneOf[] | null
 }
 
@@ -52,6 +54,7 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
   emptyTargetApp: ITargetApp = {
     id: '',
     name: '',
+    subTitle: '',
     fields: null
   }
   addTargetApp = (targetApp, rowIndex) => {
@@ -81,11 +84,18 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
       this.editTargetApp({
         id: appId,
         name: name,
+        subTitle: name,
         fields: Object.values(properties)
       } as ITargetApp, rowIndex);
     }).catch(e => {
       alert(e);
     });
+  }
+  editTargetApp_subTitle = (subTitle: string | null, rowIndex) => {
+    const targetApps = [...this.state.targetApps];
+    targetApps[rowIndex].subTitle = subTitle || '';
+    this.setState({ targetApps });
+    console.log("at editTargetApp_subTitle this.state.targetApps=", this.state.targetApps)
   }
   handleRowAdd = ({ data, rowIndex }: DispatchParams) => {
     this.addEmptyTargetApp(rowIndex);
@@ -113,32 +123,38 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
           (this.state.value[rowIndex]?.shows?.length)
         ) {
           this.state.value[rowIndex].appName = targetApp.name;
+          this.state.value[rowIndex].subTitle = targetApp.subTitle;
           updatePromise.push(
             kintoneRestAPIClient.app.getFormFields({ app: targetApp.id }) // this.state.value[rowIndex]?.shows?.length===0でも、targetApp.idの存在をチェックする
               .then(fieldProperties => {
                 this.state.value[rowIndex].showFields = [];
-                this.state.value[rowIndex].shows.forEach(showSpec => {
-                  const curProp = fieldProperties.properties[showSpec.code];
-                  if (curProp) {
-                    (this.state.value[rowIndex].showFields).push({
-                      type: curProp.type,
-                      code: curProp.code,
-                      label: curProp.label,
-                      // 表示には不要な、ネストしているsubTable等のプロパティを除外してメモリ節約する
-                      minLength: (curProp as KintoneFieldsProperty.SingleLineText).minLength,
-                      maxLength: (curProp as KintoneFieldsProperty.SingleLineText).maxLength,
-                      format: (curProp as KintoneFieldsProperty.Calc).format,
-                      unit: (curProp as KintoneFieldsProperty.Number).unit,
-                      unitPosition: (curProp as KintoneFieldsProperty.Number).unitPosition,
-                      minValue: (curProp as KintoneFieldsProperty.Number).minValue,
-                      maxValue: (curProp as KintoneFieldsProperty.Number).maxValue,
-                      digit: (curProp as KintoneFieldsProperty.Number).digit,
-                      displayScale: (curProp as KintoneFieldsProperty.Number).displayScale,
-                      protocol: (curProp as KintoneFieldsProperty.Link).protocol,
-                      options: (curProp as KintoneFieldsProperty.CheckBox).options
-                    } as never);
+                this.state.value[rowIndex].shows.forEach((showSpec, index1) => {
+                  if (showSpec && (showSpec?.code?.length > 0)) {
+                    const curProp = fieldProperties.properties[showSpec.code];
+                    if (curProp) {
+                      (this.state.value[rowIndex].showFields).push({
+                        type: curProp.type,
+                        code: curProp.code,
+                        label: curProp.label,
+                        // 表示には不要な、ネストしているsubTable等のプロパティを除外して、メモリ節約する。 ∵kintone.plugin.app.setConfigの容量制限による。
+                        defaultValue: (curProp as KintoneFieldsProperty.SingleLineText).defaultValue,
+                        minLength: (curProp as KintoneFieldsProperty.SingleLineText).minLength,
+                        maxLength: (curProp as KintoneFieldsProperty.SingleLineText).maxLength,
+                        format: (curProp as KintoneFieldsProperty.Calc).format,
+                        unit: (curProp as KintoneFieldsProperty.Number).unit,
+                        unitPosition: (curProp as KintoneFieldsProperty.Number).unitPosition,
+                        minValue: (curProp as KintoneFieldsProperty.Number).minValue,
+                        maxValue: (curProp as KintoneFieldsProperty.Number).maxValue,
+                        digit: (curProp as KintoneFieldsProperty.Number).digit,
+                        displayScale: (curProp as KintoneFieldsProperty.Number).displayScale,
+                        protocol: (curProp as KintoneFieldsProperty.Link).protocol,
+                        options: (curProp as KintoneFieldsProperty.CheckBox).options
+                      } as never);
+                    } else {
+                      notFounds.push(`関連テーブル${targetApp.name}にフィールドコード${showSpec.code}が在りません。`);
+                    }
                   } else {
-                    notFounds.push(`関連テーブル${targetApp.name}にフィールドコード${showSpec.code}が在りません。`);
+                    notFounds.push(`関連テーブル${targetApp.name}の${index1}番目に指定されたフィールドコードが空です。`);
                   }
                 })
                 if (this.state.value[rowIndex]?.shows?.length !== this.state.value[rowIndex]?.showFields?.length) {
@@ -168,7 +184,7 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
     const columns: TableColumn[] = [{
       header: 'space',
       cell: ({ rowIndex, onCellChange }) =>
-        <Dropdown
+        <Kuc.Dropdown
           items={selectItemManager.createItems(this.props.spaceIds)}
           value={selectItemManager.getValue({ unFormattedItems: this.props.spaceIds, value: this.state.value[rowIndex || 0].space }) as string}
           onChange={newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'space')}
@@ -179,8 +195,10 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
         <AppCell
           value={this.state.value[rowIndex as number].app}
           appName={this.state.targetApps[rowIndex as number].name}
+          subTitle={this.state.targetApps[rowIndex as number].subTitle}
           onSearch={appId => this.searchApp(appId, rowIndex)}
           onChange={newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'app')}
+          onChangeSubTitle={newValue => this.editTargetApp_subTitle(newValue, rowIndex)}
         />
     }, {
       header: 'conditions',
@@ -210,7 +228,7 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
     }];
     return (
       <div>
-        <Table
+        <Kuc.Table
           columns={columns}
           data={this.state.value}
           defaultRowData={{}}
@@ -218,7 +236,7 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
           onRowRemove={this.handleRowRemove}
           onCellChange={this.handleCellChange}
         />
-        <Button text='save' type='submit' onClick={this.save} />
+        <Kuc.Button text='save' type='submit' onClick={this.save} />
       </div>
     );
   }

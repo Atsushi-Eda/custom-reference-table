@@ -1,4 +1,4 @@
-import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
+import type { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 import { IConditionSpec, TOperatorString } from '../../type/ReferenceTable';
 
 export default class conditionOperatorsManager {

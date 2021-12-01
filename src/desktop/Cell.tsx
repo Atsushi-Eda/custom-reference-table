@@ -4,7 +4,7 @@ import React from 'react';
 import luxon from "luxon";
 import UserCell from './UserCell';
 import FilesCell from './FilesCell';
-import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
+import type { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 import * as KintoneFieldsProperty from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 
 const Cell = ({ type, value, property }: { type: string, value: any, property: OneOf }) => {
