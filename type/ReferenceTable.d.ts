@@ -1,7 +1,7 @@
-import { AppID, Properties } from "@kintone/rest-api-client/lib/client/types";
+import type { AppID /*, Properties*/ } from "@kintone/rest-api-client/lib/client/types";
 // import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/field";
-import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
-import * as KintoneFieldsProperty from "@kintone/rest-api-client/lib/KintoneFields/types/property";
+import type { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
+// import * as KintoneFieldsProperty from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 
 type TOperatorString = '=' | '!=' | '>' | '<' | '>=' | '<=' | 'in' | 'not in' | 'like' | 'not like';
 
@@ -39,7 +39,7 @@ export interface IReferenceTable {
     appName: string,
     subTitle: string,
     conditions: IConditionSpec[],
-    limit: number,
+    limit: string,
     shows: IShowsSpec[],  // config中の表示向けカラム
     showFields: Array<OneOf>,
         // & KintoneFieldsProperty.SingleLineText &
