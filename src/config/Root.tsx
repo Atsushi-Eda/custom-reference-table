@@ -12,7 +12,7 @@ import selectItemManager from './selectItemManager';
 // import {Connection, App} from '@kintone/kintone-js-sdk';
 // const kintoneApp = new App(new Connection);
 import { KintoneRestAPIClient } from '@kintone/rest-api-client';
-// import { AppID } from "@kintone/rest-api-client/lib/client/types";
+import { AppID } from "@kintone/rest-api-client/lib/client/types";
 import type { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 import type * as KintoneFieldsProperty from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 import type { IReferenceTable } from '../../type/ReferenceTable';
@@ -26,7 +26,7 @@ interface IRootPropsType {
 }
 
 interface ITargetApp {
-  id: string,
+  id: AppID,
   name: string,
   subTitle: string,
   fields: OneOf[] | null
@@ -45,7 +45,12 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
     const stateValue: IReferenceTable[] = props.savedValue?.length ? props.savedValue : [{}];
     this.state = {
       value: stateValue,
-      targetApps: stateValue.map(() => this.emptyTargetApp)
+      targetApps: stateValue.map(v => ({
+        id: v.app,
+        name: v.appName,
+        subTitle: v.subTitle || '', // 保存済みの値を復帰する
+        fields: null
+      }))
     };
     (this.state.value as IReferenceTable[]).forEach(({ app }, rowIndex: number) => {
       if (app) this.searchApp(app, rowIndex);
