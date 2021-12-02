@@ -1,11 +1,11 @@
 // @ts-ignore
 import React from 'react';
 // import moment from "moment";
-import luxon from "luxon";
+import * as luxon from "luxon";
 import UserCell from './UserCell';
 import FilesCell from './FilesCell';
 import type { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
-import * as KintoneFieldsProperty from "@kintone/rest-api-client/lib/KintoneFields/types/property";
+import type * as KintoneFieldsProperty from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 
 const Cell = ({ type, value, property }: { type: string, value: any, property: OneOf }) => {
   if (['CREATOR', 'MODIFIER'].includes(type)) {
@@ -24,10 +24,10 @@ const Cell = ({ type, value, property }: { type: string, value: any, property: O
     return <div dangerouslySetInnerHTML={{ __html: value }}></div>;
   } else if (['CHECK_BOX', 'MULTI_SELECT', 'CATEGORY'].includes(type)) {
     return <div>{(value).map((v, i) => <div key={i}>{v}</div>)}</div>;
-  } else if (['DATETIME'].includes(type)) {
+  } else if (['DATETIME', 'UPDATED_TIME', 'CREATED_TIME'].includes(type)) {
     // console.log("at Cell type=DATETIMEm, value=", value)
     // return <div>{moment(value).isValid() ? moment(value).format('YYYY-MM-DD HH:mm') : value}</div>;
-    return <div>{luxon.DateTime.fromISO(value, {zone: 'utc'}).isValid ? luxon.DateTime.fromISO(value, {zone: 'utc'}).toFormat('yyyy-MM-dd HH:mm') : value}</div>;
+    return <div>{luxon.DateTime.fromISO(value, { zone: 'utc' }).isValid ? luxon.DateTime.fromISO(value, { zone: 'utc' }).toFormat('yyyy-MM-dd HH:mm') : value}</div>;
   } else if (['FILE'].includes(type)) {
     return <FilesCell files={value} />;
   } else if (['LINK'].includes(type)) {
