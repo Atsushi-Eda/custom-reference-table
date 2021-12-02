@@ -5,10 +5,10 @@ import Root from './Root';
 // import {Connection, App} from '@kintone/kintone-js-sdk';
 // const kintoneApp = new App(new Connection);
 import { KintoneRestAPIClient } from '@kintone/rest-api-client';
-import { Field } from "@kintone/rest-api-client/lib/KintoneFields/types/layout";
+import type { Field } from "@kintone/rest-api-client/lib/KintoneFields/types/layout";
 
 // import { OneOf } from '@kintone/rest-api-client/lib/KintoneFields/types/field';
-import { Row } from '@kintone/rest-api-client/lib/KintoneFields/types/layout';
+import type { Row } from '@kintone/rest-api-client/lib/KintoneFields/types/layout';
 const kintoneRestAPIClient = new KintoneRestAPIClient();
 
 (PLUGIN_ID => {

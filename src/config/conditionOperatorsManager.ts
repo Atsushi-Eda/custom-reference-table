@@ -1,5 +1,5 @@
 import type { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
-import { IConditionSpec, TOperatorString } from '../../type/ReferenceTable';
+import type { IConditionSpec, TOperatorString } from '../../type/ReferenceTable';
 
 export default class conditionOperatorsManager {
   static mapper = new Map<string,TOperatorString[]>([

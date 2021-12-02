@@ -1,31 +1,36 @@
 {
-    "compilerOptions": {
-      "allowSyntheticDefaultImports": true,
-      "noFallthroughCasesInSwitch": true,
-      "noUnusedParameters": true,
-      "noImplicitReturns": true,
-      "esModuleInterop": true,
-      "moduleResolution": "Node",
-      "noUnusedLocals": true,
-      "noImplicitAny": false,
-      "declarationDir": "dist/types",
-      "declaration": true,
-      "target": "es2015",
-      "module": "es2015",
-      "jsx": "react",
-      "strict": true,
-      "outDir": "build/"
-    },
-    "files": [
-        "./node_modules/@kintone/dts-gen/kintone.d.ts",
-        "./type/ReferenceTable.d.ts"
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+    "declarationDir": "dist/types",
+    "declaration": true,
+    "target": "es2015",
+    "module": "es2015",
+    "lib": [
+      "dom",
+      "es2019"
     ],
-    "include": [
-      "src/**/*"
-, "type/ReferenceTable.d.ts"    ],
-    "exclude": [
-      "node_modules",
-      "dist",
-      "plugin"
-    ]
-  }
+    "jsx": "react",
+    "strict": true,
+    "outDir": "build/"
+  },
+  "files": [
+    "./node_modules/@kintone/dts-gen/kintone.d.ts",
+    "./type/ReferenceTable.d.ts"
+  ],
+  "include": [
+    "src/**/*",
+    "type/ReferenceTable.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "plugin"
+  ]
+}

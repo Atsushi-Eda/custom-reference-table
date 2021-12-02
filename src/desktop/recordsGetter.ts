@@ -1,17 +1,18 @@
 import queryCondition from "./queryConditonManager";
 import querySortManager from "./querySortManager";
+import type * as kintoneRestApiClientTypes from "@kintone/rest-api-client/lib/client/types";
+// import type { Record } from "@kintone/rest-api-client/lib/client/types";
 // import {Connection, Record} from '@kintone/kintone-js-sdk';
 // const kintoneRecord = new Record(new Connection);
-import { Record } from "@kintone/rest-api-client/lib/client/types";
 import { KintoneRestAPIClient } from '@kintone/rest-api-client';
-import { IReferenceTable } from "../../type/ReferenceTable";
+import type { IReferenceTable } from "../../type/ReferenceTable";
 const kintoneRestAPIClient = new KintoneRestAPIClient();
 
 export default class recordsGetter {
-  static getFromAllReferenceTables(referenceTables: IReferenceTable[], selfRecord: Record): Promise<{ records: Record[], totalCount: number }[]> {
+  static getFromAllReferenceTables(referenceTables: IReferenceTable[], selfRecord: kintoneRestApiClientTypes.Record): Promise<{ records: kintoneRestApiClientTypes.Record[], totalCount: number }[]> {
     return Promise.all(referenceTables.map(referenceTable => this.getFromSingleReferenceTable(referenceTable, selfRecord)));
   }
-  static getFromSingleReferenceTable(referenceTable: IReferenceTable, selfRecord: Record) {
+  static getFromSingleReferenceTable(referenceTable: IReferenceTable, selfRecord: kintoneRestApiClientTypes.Record) {
     return kintoneRestAPIClient.record.getAllRecords({ // getAllRecordsByCursor
       app: referenceTable.app,
       condition: queryCondition.create(referenceTable.conditions, selfRecord),

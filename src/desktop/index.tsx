@@ -1,7 +1,8 @@
 // @ts-ignore
 import React from 'react';
-import { IReferenceTable } from '../../type/ReferenceTable';
+import type { IReferenceTable } from '../../type/ReferenceTable';
 import { renderCustomReferrenceTable } from './kinToneDataTable';
+import recordsGetter from './recordsGetter';
 
 (PLUGIN_ID => {
   const referenceTables: IReferenceTable[] = JSON.parse(kintone.plugin.app.getConfig(PLUGIN_ID)?.referenceTables || '[]')

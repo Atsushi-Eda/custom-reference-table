@@ -5,7 +5,7 @@ import * as Kuc from '@kintone/kintone-ui-component';
 import fieldsFilter from './fieldsFilter';
 import selectItemManager from './selectItemManager';
 import conditionOperatorsManager from './conditionOperatorsManager';
-import { IConditionsCellProp, IConditionSpec } from '../../type/ReferenceTable';
+import type { IConditionsCellProp, IConditionSpec } from '../../type/ReferenceTable';
 
 const ConditionsCell = (props: IConditionsCellProp) => {
   const value: Array<IConditionSpec> = props.value || [{}];

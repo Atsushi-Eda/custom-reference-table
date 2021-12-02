@@ -36,8 +36,8 @@ module.exports = [
       //   require.resolve('react-dom'),
       // ]
     },
-    externals: {
-      luxon: 'luxon',
+    // externals: {
+      // luxon: 'luxon', // "https://js.cybozu.com/luxon/2.0.2/luxon.min.js",
       // Kuc: 'Kuc',
       // "kintone-ui-component": 'Kuc' // Error: Minified React error #130;
       // 'react': {
@@ -50,7 +50,7 @@ module.exports = [
       //   commonjs: 'react-dom',
       //   commonjs2: 'react-dom',
       // },
-    },
+    // },
     plugins: [
       new KintonePlugin({
         manifestJSONPath: './plugin/manifest.json',

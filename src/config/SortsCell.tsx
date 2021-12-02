@@ -5,7 +5,7 @@ import type { TableColumn } from '@kintone/kintone-ui-component';
 import fieldsFilter from './fieldsFilter';
 import selectItemManager from './selectItemManager';
 // import { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
-import { ISortsCellProps } from '../../type/ReferenceTable';
+import type { ISortsCellProps } from '../../type/ReferenceTable';
 
 const SortsCell = (props: ISortsCellProps) => {
   const operators = ['asc', 'desc'];

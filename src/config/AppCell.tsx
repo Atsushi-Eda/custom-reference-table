@@ -3,7 +3,7 @@ import React from 'react';
 import * as Kuc from '@kintone/kintone-ui-component'; // { Text, Button }
 // import { Text, Button } from 'kintone-ui-component'; // { Text, Button }
 
-import { AppID } from "@kintone/rest-api-client/lib/client/types";
+import type { AppID } from "@kintone/rest-api-client/lib/client/types";
 
 interface IAppCellProps {
   value?: AppID,

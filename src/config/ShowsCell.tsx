@@ -6,7 +6,7 @@ import type { TableColumn } from '@kintone/kintone-ui-component';
 import fieldsFilter from './fieldsFilter';
 import selectItemManager from './selectItemManager';
 import type { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
-import { IShowsSpec } from '../../type/ReferenceTable';
+import type { IShowsSpec } from '../../type/ReferenceTable';
 
 interface IShowsCellProps {
   value: Array<IShowsSpec>,

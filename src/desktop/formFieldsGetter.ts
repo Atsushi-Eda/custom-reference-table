@@ -1,8 +1,8 @@
 // import {Connection, App} from '@kintone/kintone-js-sdk';
 // const kintoneApp = new App(new Connection);
-import { Revision, Properties } from "@kintone/rest-api-client/lib/client/types";
+import type { Revision, Properties } from "@kintone/rest-api-client/lib/client/types";
 import { KintoneRestAPIClient } from '@kintone/rest-api-client';
-import { IReferenceTable } from "../../type/ReferenceTable";
+import type { IReferenceTable } from "../../type/ReferenceTable";
 
 const kintoneRestAPIClient = new KintoneRestAPIClient();
 

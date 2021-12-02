@@ -1,6 +1,6 @@
-import { IConditionSpec } from "../../type/ReferenceTable";
-import * as kintoneRestApiClientTypes from "@kintone/rest-api-client/lib/client/types";
-import * as KintoneFieldsField from "@kintone/rest-api-client/lib/KintoneFields/types/field";
+import type { IConditionSpec } from "../../type/ReferenceTable";
+import type * as kintoneRestApiClientTypes from "@kintone/rest-api-client/lib/client/types";
+import type { KintoneRecordField } from "@kintone/rest-api-client";
 
 export default class queryCondition {
   static create(conditions: IConditionSpec[], record: kintoneRestApiClientTypes.Record) {
@@ -16,13 +16,13 @@ export default class queryCondition {
     const selfFieldValue = record[selfField].value;
     if (['in', 'not in'].includes(operator)) {
       if (['CREATOR', 'MODIFIER'].includes(selfFieldType)) {
-        return `${targetField} ${operator} ("${(record[selfField] as KintoneFieldsField.Creator).value.code}")`;
+        return `${targetField} ${operator} ("${(record[selfField] as KintoneRecordField.Creator).value.code}")`;
       } else if (Array.isArray(selfFieldValue)) {
         if (selfFieldValue.length) {
           if (['FILE'].includes(selfFieldType)) {
-            return `${targetField} ${operator} (${(record[selfField] as KintoneFieldsField.File).value.map(({ name }) => `"${name}"`).join(', ')})`;
+            return `${targetField} ${operator} (${(record[selfField] as KintoneRecordField.File).value.map(({ name }) => `"${name}"`).join(', ')})`;
           } else if (['USER_SELECT', 'STATUS_ASSIGNEE', 'ORGANIZATION_SELECT', 'GROUP_SELECT'].includes(selfFieldType)) {
-            return `${targetField} ${operator} (${(record[selfField] as KintoneFieldsField.UserSelect).value.map(({ code }) => `"${code}"`).join(', ')})`;
+            return `${targetField} ${operator} (${(record[selfField] as KintoneRecordField.UserSelect).value.map(({ code }) => `"${code}"`).join(', ')})`;
           } else {
             return `${targetField} ${operator} (${selfFieldValue.map(v => `"${v}"`).join(', ')})`;
           }
@@ -34,13 +34,13 @@ export default class queryCondition {
       }
     } else {
       if (['CREATOR', 'MODIFIER'].includes(selfFieldType)) {
-        return `${targetField} ${operator} "${(record[selfField] as KintoneFieldsField.Creator).value.code}"`;
+        return `${targetField} ${operator} "${(record[selfField] as KintoneRecordField.Creator).value.code}"`;
       } else if (['FILE'].includes(selfFieldType)) {
-        return `${targetField} ${operator} "${(record[selfField] as KintoneFieldsField.File).value.map(({ name }) => name).join('')}"`;
+        return `${targetField} ${operator} "${(record[selfField] as KintoneRecordField.File).value.map(({ name }) => name).join('')}"`;
       } else if (['USER_SELECT', 'STATUS_ASSIGNEE', 'ORGANIZATION_SELECT', 'GROUP_SELECT'].includes(selfFieldType)) {
-        return `${targetField} ${operator} "${(record[selfField] as KintoneFieldsField.UserSelect).value.map(({ code }) => code).join('')}"`;
+        return `${targetField} ${operator} "${(record[selfField] as KintoneRecordField.UserSelect).value.map(({ code }) => code).join('')}"`;
       } else if (['CHECK_BOX', 'MULTI_SELECT', 'CATEGORY'].includes(selfFieldType)) {
-        return `${targetField} ${operator} "${(record[selfField] as KintoneFieldsField.CheckBox).value.join('')}"`;
+        return `${targetField} ${operator} "${(record[selfField] as KintoneRecordField.CheckBox).value.join('')}"`;
       } else {
         return `${targetField} ${operator} "${selfFieldValue}"`;
       }

@@ -7,14 +7,15 @@ import AppCell from './AppCell';
 import ConditionsCell from './ConditionsCell';
 import ShowsCell from './ShowsCell';
 import SortsCell from './SortsCell';
+import PageingCell from './PageingCell';
 import selectItemManager from './selectItemManager';
 // import {Connection, App} from '@kintone/kintone-js-sdk';
 // const kintoneApp = new App(new Connection);
 import { KintoneRestAPIClient } from '@kintone/rest-api-client';
 // import { AppID } from "@kintone/rest-api-client/lib/client/types";
 import type { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
-import * as KintoneFieldsProperty from "@kintone/rest-api-client/lib/KintoneFields/types/property";
-import { IReferenceTable } from '../../type/ReferenceTable';
+import type * as KintoneFieldsProperty from "@kintone/rest-api-client/lib/KintoneFields/types/property";
+import type { IReferenceTable } from '../../type/ReferenceTable';
 
 const kintoneRestAPIClient = new KintoneRestAPIClient();
 
@@ -225,7 +226,15 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
           fields={this.state.targetApps[rowIndex as number].fields}
           onChange={newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'sorts')}
         />
-    }];
+    }, {
+      header: 'scroll',
+      cell: ({ rowIndex, onCellChange }) =>
+        <PageingCell
+          value={this.state.value[rowIndex as number].limit}
+          onChange={newValue => onCellChange && onCellChange(newValue, this.state.value, rowIndex, 'limit')}
+        />
+    }
+    ];
     return (
       <div>
         <Kuc.Table

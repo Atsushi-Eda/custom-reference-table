@@ -1,4 +1,4 @@
-import { ISortSpec } from "../../type/ReferenceTable";
+import type { ISortSpec } from "../../type/ReferenceTable";
 
 export default class querySortManager {
   static create(sorts: ISortSpec[] | undefined) {
