@@ -1,7 +1,9 @@
 {
   "name": "custom-reference-table",
-  "version": "0.1.2",
+  "version": "0.2.1",
   "private": false,
+  "author": "junichi-kose@peer-connect.co.jp",
+  "license": "MIT",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --mode=production",
     "build:dev": "cross-env NODE_ENV=production webpack --mode=development",
