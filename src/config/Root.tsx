@@ -85,7 +85,8 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
       this.editTargetApp({
         id: appId,
         name: name,
-        subTitle: name,
+        subTitle: (!this.state.targetApps[rowIndex].subTitle || this.state.targetApps[rowIndex].subTitle.length <= 0) ? name :
+          this.state.targetApps[rowIndex].subTitle,
         fields: Object.values(properties)
       } as ITargetApp, rowIndex);
     }).catch(e => {
