@@ -7,10 +7,10 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --mode=production",
     "build:dev": "cross-env NODE_ENV=production webpack --mode=development",
-    "package": "kintone-plugin-packer --ppk private.ppk --out ./plugin.zip plugin",
+    "package": "kintone-plugin-packer --ppk private.ppk --out ./release/plugin.zip plugin",
     "build:package": "npm run build && npm run package",
     "build:dev:package": "npm run build:dev && npm run package",
-    "upload": "kintone-plugin-uploader ./plugin.zip"
+    "upload": "kintone-plugin-uploader ./release/plugin.zip"
   },
   "eslintConfig": {
     "extends": "react-app"
