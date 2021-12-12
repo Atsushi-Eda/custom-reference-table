@@ -5,16 +5,17 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "esModuleInterop": true,
-    "moduleResolution": "Node",
+    "importHelpers": true,                 /* Import emit helpers from 'tslib'. */
+    "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
     "noUnusedLocals": true,
     "noImplicitAny": false,
     "declarationDir": "dist/types",
     "declaration": true,
-    "target": "es2015",
-    "module": "es2015",
+    "target": "es2017",
+    "module": "esnext",
     "lib": [
       "dom",
-      "es2019"
+      "esnext"
     ],
     "jsx": "react",
     "strict": true,

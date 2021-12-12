@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --mode=production",
-    "build:dev": "cross-env NODE_ENV=production webpack --mode=development",
+    "build:dev": "cross-env NODE_ENV=development webpack --mode=development",
     "package": "kintone-plugin-packer --ppk private.ppk --out ./release/plugin.zip plugin",
     "build:package": "npm run build && npm run package",
     "build:dev:package": "npm run build:dev && npm run package",
@@ -43,6 +43,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.5.1",
     "style-loader": "^3.3.1",
+    "tslib": "^2.3.1",
     "typescript": "^4.5.2",
     "webpack": "^5.64.2",
     "webpack-cli": "^4.9.1"
