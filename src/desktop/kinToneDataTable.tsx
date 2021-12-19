@@ -99,7 +99,7 @@ class KintoneDataTable extends React.Component<IKintoneDataTableProps, IKintoneD
   }
   render() {
     return (<div>
-      <label className="kuc-label" role="presentation">{this.props.referenceTable.subTitle.length > 0 ? this.props.referenceTable.subTitle : this.props.referenceTable.appName} </label>
+      <label className="control-label-text-gaia" role="presentation">{this.props.referenceTable.subTitle.length > 0 ? this.props.referenceTable.subTitle : this.props.referenceTable.appName} </label>
       <button onClick={this.onClickLeft} type="button"
         style={{ userSelect: "none", justifyContent: "flex-end" }}
         title="前へ" aria-label="前へ" itemProp="prev"
