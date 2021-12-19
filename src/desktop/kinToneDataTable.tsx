@@ -129,7 +129,7 @@ class KintoneDataTable extends React.Component<IKintoneDataTableProps, IKintoneD
         data={this.state.records}
         actionButtonsShown={false}
       />
-      <span className="control-label-text-gaia" role="presentation">
+      <span className="kuc-label" role="presentation">
         {this.state.message}
       </span>
       <button onClick={this.onClickRight} type="button"
