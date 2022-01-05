@@ -142,7 +142,7 @@ class KintoneDataTable extends React.Component<IKintoneDataTableProps, IKintoneD
 }
 
 export function renderCustomReferrenceTable(kintoneEvent, referenceTables: IReferenceTable[]) {
-  console.log("at cutsom refference table render enter:", referenceTables);
+  // console.log("at cutsom refference table render enter:", referenceTables);
   let renderPromise = new kintone.Promise((resolve1, _) => { resolve1("async render process begin"); });
   let recordLoaderPromise = new kintone.Promise((resolve1, _) => { resolve1("async record load process begin"); });
   referenceTables.forEach((referenceTable, index) => {
@@ -171,7 +171,7 @@ export function renderCustomReferrenceTable(kintoneEvent, referenceTables: IRefe
               domRoot,
               () => { // renderの終了を待たないと、「Uncaught Error: Processing event handler exists.」等のエラーに成った。
                 resolve2(null /*kintoneDataTable1*/);
-                console.log("at KintoneDataTable render done:#" + index)
+                // console.log("at KintoneDataTable render done:#" + index)
               }
             );
           });
@@ -186,11 +186,11 @@ export function renderCustomReferrenceTable(kintoneEvent, referenceTables: IRefe
     }
   });
   return renderPromise.then(_ => { // 順次処理した非同期処理の完了を期待する
-    console.log("at cutsom refference table render Done:@" + referenceTables.length);
+    // console.log("at cutsom refference table render Done:@" + referenceTables.length);
     return recordLoaderPromise;
   })
     .then(_ => {
-      console.log("at cutsom refference table records load Done:@" + referenceTables.length);
+      // console.log("at cutsom refference table records load Done:@" + referenceTables.length);
     })
     .catch(err => {
       console.error("ERROR at cutsom refference table render", err)

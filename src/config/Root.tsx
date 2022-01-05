@@ -80,7 +80,7 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
     const targetApps = [...this.state.targetApps];
     targetApps[rowIndex] = targetApp;
     this.setState({ targetApps });
-    console.log("at editTargetApp this.state.value=", this.state.value)
+    // console.log("at editTargetApp this.state.value=", this.state.value)
   }
   searchApp = (appId, rowIndex) => {
     Promise.all([
@@ -102,7 +102,7 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
     const targetApps = [...this.state.targetApps];
     targetApps[rowIndex].subTitle = subTitle || '';
     this.setState({ targetApps });
-    console.log("at editTargetApp_subTitle this.state.targetApps=", this.state.targetApps)
+    // console.log("at editTargetApp_subTitle this.state.targetApps=", this.state.targetApps)
   }
   handleRowAdd = ({ data, rowIndex }: DispatchParams) => {
     this.addEmptyTargetApp(rowIndex);
@@ -116,11 +116,11 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
     this.setState({ value: data });
   }
   save = (e) => {
-    console.log("at save enterd this.state=", e, this.state)
+    // console.log("at save enterd this.state=", e, this.state)
     kintone.plugin.app.setConfig({
       referenceTables: JSON.stringify(this.state.value)
     }, () => { // successCallback 関数が指定された場合、アプリ設定のプラグインの一覧画面には遷移しません。
-      console.log("at save kintone.plugin.app.setConfig successCallback enterd");
+      // console.log("at save kintone.plugin.app.setConfig successCallback enterd");
       // console.log("at save kintone.plugin.app.setConfig called. continues..");
       const updatePromise: Promise<any>[] = []; // 当該アプリの設定は更新していなくても、関連アプリのプロパティを更新している場合、saveで更新に追従する
       let notFounds: string[] = [];
@@ -171,7 +171,7 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
           );
         }
       }
-      console.log("at save updatePromise builded", updatePromise)
+      // console.log("at save updatePromise builded", updatePromise)
       kintone.Promise.all(updatePromise).then(_ => {
         console.log("at save this.state=", this.state)
         if (notFounds.length > 0) {
@@ -185,7 +185,7 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
         console.error(err) // targetApp.idが存在しなかった場合、または、this.state.value[rowIndex].shows[].codeが無かった場合
       });
     });
-    console.log("at save leaved")
+    // console.log("at save leaved")
   }
   render() {
     const columns: TableColumn[] = [{
