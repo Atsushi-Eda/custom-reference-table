@@ -127,7 +127,8 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
       for (let rowIndex = 0; rowIndex < this.state.targetApps.length; rowIndex++) {
         const targetApp = this.state.targetApps[rowIndex];
         if ((targetApp.id === this.state.value[rowIndex].app) &&
-          (this.state.value[rowIndex]?.shows?.length)
+          (this.state.value[rowIndex]?.shows?.length) &&
+          (this.state.value[rowIndex].shows.length > 0)
         ) {
           this.state.value[rowIndex].appName = targetApp.name;
           this.state.value[rowIndex].subTitle = targetApp.subTitle;
@@ -164,12 +165,20 @@ export default class Root extends React.Component<IRootPropsType, IRootState>
                     notFounds.push(`関連テーブル${targetApp.name}の${index1}番目に指定されたフィールドコードが空です。`);
                   }
                 })
-                if (this.state.value[rowIndex]?.shows?.length !== this.state.value[rowIndex]?.showFields?.length) {
+                if ((this.state.value[rowIndex].showFields.length <= 0) ||
+                  (this.state.value[rowIndex]?.shows?.length !== this.state.value[rowIndex]?.showFields?.length)) {
                   notFounds.push(`関連テーブルとして有効なフィールドの数が足りません。`);
                 }
               })
           );
+        } else {
+          notFounds.push("shows field列に表示対象が指定されていません。")
         }
+      }
+      if (notFounds.length > 0) {
+        window.alert(notFounds.join("\n"));
+        console.error(notFounds)
+        return;
       }
       // console.log("at save updatePromise builded", updatePromise)
       kintone.Promise.all(updatePromise).then(_ => {

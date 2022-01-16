@@ -16,7 +16,7 @@ export default class recordsGetter {
     // console.log("at recordsGetter.getFromSingleReferenceTable, kintoneRestAPIClient=", kintoneRestAPIClient)
     return kintoneRestAPIClient.record.getRecords({ // getAllRecordsByCursor
       app: referenceTable.app,
-      fields: ['$id', ...referenceTable.shows.map(show => show.code)],
+      fields: ['$id', ...(referenceTable.shows || []).map(show => show.code)],
       query: queryCondition.create(referenceTable.conditions, selfRecord) +
         querySortManager.create(referenceTable.sorts) + " limit " + limit + " offset " + offset,
       // totalCount: true
