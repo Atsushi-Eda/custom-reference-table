@@ -100,11 +100,6 @@ class KintoneDataTable extends React.Component<IKintoneDataTableProps, IKintoneD
   render() {
     return (<div>
       <label className="control-label-text-gaia" role="presentation">{this.props.referenceTable.subTitle.length > 0 ? this.props.referenceTable.subTitle : this.props.referenceTable.appName} </label>
-      <button onClick={this.onClickLeft} type="button"
-        style={{ userSelect: "none", justifyContent: "flex-end" }}
-        title="前へ" aria-label="前へ" itemProp="prev"
-        className="gaia-ui-listtable-pagercomponent-prev"
-      >↑</button>
       <Kuc.Table
         columns={[
           ...(this.props.withHeader ? [{
@@ -129,14 +124,19 @@ class KintoneDataTable extends React.Component<IKintoneDataTableProps, IKintoneD
         data={this.state.records}
         actionButtonsShown={false}
       />
+      <button onClick={this.onClickLeft} type="button"
+        style={{ userSelect: "none", justifyContent: "flex-end" }}
+        title="前へ" aria-label="前へ" itemProp="prev"
+        className="gaia-ui-listtable-pagercomponent-prev"
+      >˂</button>&nbsp;
       <span className="kuc-label" role="presentation">
         {this.state.message}
-      </span>
+      </span>&nbsp;
       <button onClick={this.onClickRight} type="button"
         style={{ userSelect: "none", justifyContent: "right" }}
         title="次へ" aria-label="次へ" itemProp="next"
         className="gaia-ui-listtable-pagercomponent-next"
-      >↓</button>
+      >˃</button>
     </div>);
   }
 }
