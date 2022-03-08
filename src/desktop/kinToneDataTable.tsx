@@ -23,6 +23,7 @@ interface IKintoneDataTableState {
   message: string,
   offset: number,
   limit: number,
+  noPrevious: boolean,
   noMore: boolean
 }
 class KintoneDataTable extends React.Component<IKintoneDataTableProps, IKintoneDataTableState> {
@@ -33,6 +34,7 @@ class KintoneDataTable extends React.Component<IKintoneDataTableProps, IKintoneD
       message: "...loading..",
       offset: 0,
       limit: Number(this.props.referenceTable.limit) || 5,
+      noPrevious: true,
       noMore: false
     }
     setTimeout(() => {
@@ -44,11 +46,13 @@ class KintoneDataTable extends React.Component<IKintoneDataTableProps, IKintoneD
       .then(getRecordsResponce => {
         this.setState({
           records: getRecordsResponce.records || [],
+          noPrevious: this.state.offset <= 0,
           noMore: !getRecordsResponce?.records?.length || (getRecordsResponce.records.length < this.state.limit),
           message: " offset " + this.state.offset + " from " + getRecordsResponce?.records?.length + "records."
         })
       }).catch(err => {
         if (err.code === 'CB_VA01') {
+          console.error("at KintoneDataTable recordsGetter.getFromSingleReferenceTable err=", err, this.props.referenceTable)
           this.setState({
             message: "実装誤りにつき、保守員に連絡要。"
           })
@@ -88,7 +92,7 @@ class KintoneDataTable extends React.Component<IKintoneDataTableProps, IKintoneD
   }
   onClickRight = (e: React.SyntheticEvent<EventTarget, Event>) => {
     let newOffset = this.state.offset + this.state.limit;
-    if (!this.state.noMore && (this.state.offset !== newOffset)) {
+    if ((this.state.offset !== newOffset)) {
       this.setState({
         message: "...loading next records..",
         offset: newOffset
@@ -124,19 +128,22 @@ class KintoneDataTable extends React.Component<IKintoneDataTableProps, IKintoneD
         data={this.state.records}
         actionButtonsShown={false}
       />
-      <button onClick={this.onClickLeft} type="button"
-        style={{ userSelect: "none", justifyContent: "flex-end" }}
-        title="前へ" aria-label="前へ" itemProp="prev"
-        className="gaia-ui-listtable-pagercomponent-prev"
-      >˂</button>&nbsp;
-      <span className="kuc-label" role="presentation">
-        {this.state.message}
-      </span>&nbsp;
-      <button onClick={this.onClickRight} type="button"
-        style={{ userSelect: "none", justifyContent: "right" }}
-        title="次へ" aria-label="次へ" itemProp="next"
-        className="gaia-ui-listtable-pagercomponent-next"
-      >˃</button>
+      <div className="pager-gaia">
+        {(!this.state.noPrevious) && (<button onClick={this.onClickLeft} type="button"
+          style={{ userSelect: "none", justifyContent: "flex-end", borderStyle: "none" }}
+          title="前へ" aria-label="前へ" itemProp="prev"
+          className="gaia-ui-listtable-pagercomponent-prev pager-prev-gaia"
+        >≺</button>)}
+        &nbsp;
+        <span className="kuc-label" role="presentation">
+          {this.state.message}
+        </span>&nbsp;
+        {(!this.state.noMore) && (<button onClick={this.onClickRight} type="button"
+          style={{ userSelect: "none", justifyContent: "right", borderStyle: "none" }}
+          title="次へ" aria-label="次へ" itemProp="next"
+          className="gaia-ui-listtable-pagercomponent-next pager-next-gaia"
+        >≻</button>)}
+      </div>
     </div>);
   }
 }
