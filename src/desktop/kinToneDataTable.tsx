@@ -48,7 +48,8 @@ class KintoneDataTable extends React.Component<IKintoneDataTableProps, IKintoneD
           records: getRecordsResponce.records || [],
           noPrevious: this.state.offset <= 0,
           noMore: !getRecordsResponce?.records?.length || (getRecordsResponce.records.length < this.state.limit),
-          message: " offset " + this.state.offset + " from " + getRecordsResponce?.records?.length + "records."
+          message: (getRecordsResponce?.records?.length > 0) ? " offset " + this.state.offset + " from " + getRecordsResponce?.records?.length + " records." :
+            "参照するレコードがありません。"
         })
       }).catch(err => {
         if (err.code === 'CB_VA01') {
@@ -130,19 +131,19 @@ class KintoneDataTable extends React.Component<IKintoneDataTableProps, IKintoneD
       />
       <div className="pager-gaia">
         {(!this.state.noPrevious) && (<button onClick={this.onClickLeft} type="button"
-          style={{ userSelect: "none", justifyContent: "flex-end", borderStyle: "none" }}
+          style={{ userSelect: "none", justifyContent: "flex-end", borderStyle: "none", color: "#50A0FF" }}
           title="前へ" aria-label="前へ" itemProp="prev"
           className="gaia-ui-listtable-pagercomponent-prev pager-prev-gaia"
-        >≺</button>)}
+        >＜</button>)}
         &nbsp;
         <span className="kuc-label" role="presentation">
           {this.state.message}
         </span>&nbsp;
         {(!this.state.noMore) && (<button onClick={this.onClickRight} type="button"
-          style={{ userSelect: "none", justifyContent: "right", borderStyle: "none" }}
+          style={{ userSelect: "none", justifyContent: "right", borderStyle: "none", color: "#50A0FF" }}
           title="次へ" aria-label="次へ" itemProp="next"
           className="gaia-ui-listtable-pagercomponent-next pager-next-gaia"
-        >≻</button>)}
+        >＞</button>)}
       </div>
     </div>);
   }
