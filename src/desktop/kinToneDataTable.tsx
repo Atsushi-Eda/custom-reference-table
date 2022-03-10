@@ -48,7 +48,7 @@ class KintoneDataTable extends React.Component<IKintoneDataTableProps, IKintoneD
           records: getRecordsResponce.records || [],
           noPrevious: this.state.offset <= 0,
           noMore: !getRecordsResponce?.records?.length || (getRecordsResponce.records.length < this.state.limit),
-          message: (getRecordsResponce?.records?.length > 0) ? " offset " + this.state.offset + " from " + getRecordsResponce?.records?.length + " records." :
+          message: (getRecordsResponce?.records?.length > 0) ? " Records with offsets " + this.state.offset + " to " + (this.state.offset + getRecordsResponce.records.length - 1) + "." :
             "参照するレコードがありません。"
         })
       }).catch(err => {
@@ -69,7 +69,7 @@ class KintoneDataTable extends React.Component<IKintoneDataTableProps, IKintoneD
           })
         } else {
           alert("データを読めませんでした!")
-          console.error("ERROR at KintoneDataTable loadData by onClickLeft:--", JSON.stringify(err))
+          console.error("ERROR at KintoneDataTable loadData by onClickLeft:--", err)
           this.setState({
             message: "Failed to load data."
           })
