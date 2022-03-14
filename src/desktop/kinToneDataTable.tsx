@@ -48,8 +48,10 @@ class KintoneDataTable extends React.Component<IKintoneDataTableProps, IKintoneD
           records: getRecordsResponce.records || [],
           noPrevious: this.state.offset <= 0,
           noMore: !getRecordsResponce?.records?.length || (getRecordsResponce.records.length < this.state.limit),
-          message: (getRecordsResponce?.records?.length > 0) ? " Records with offsets " + this.state.offset + " to " + (this.state.offset + getRecordsResponce.records.length - 1) + "." :
-            "参照するレコードがありません。"
+          message: (getRecordsResponce?.records?.length > 0) ? (
+            getRecordsResponce.records.length === 1 ? " Record at " + (this.state.offset + 1) :
+              " Records from " + (this.state.offset + 1) + " to " + (this.state.offset + getRecordsResponce.records.length) + "."
+          ) : "参照するレコードがありません。"
         })
       }).catch(err => {
         if (err.code === 'CB_VA01') {
