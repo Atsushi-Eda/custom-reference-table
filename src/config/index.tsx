@@ -9,13 +9,19 @@ import type { Field } from "@kintone/rest-api-client/lib/KintoneFields/types/lay
 
 // import { OneOf } from '@kintone/rest-api-client/lib/KintoneFields/types/field';
 import type { Row } from '@kintone/rest-api-client/lib/KintoneFields/types/layout';
-const kintoneRestAPIClient = new KintoneRestAPIClient();
 
 (PLUGIN_ID => {
   const appId = kintone.app.getId();
   if (!appId) {
     console.error("ERROR at inedx.tsx: kintone.app.getId() === null.")
   } else {
+    let guestSpaceId;
+    {
+      if (window.location.pathname.startsWith('/k/guest/')) {
+        guestSpaceId = window.location.pathname.slice('/k/guest/'.length, window.location.pathname.indexOf('/', '/k/guest/'.length))
+      }
+    }
+    const kintoneRestAPIClient = new KintoneRestAPIClient({ guestSpaceId });
     Promise.all([
       kintoneRestAPIClient.app.getFormFields({
         app: appId,
