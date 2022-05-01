@@ -12,7 +12,7 @@ Third-Party Licenses.
 │  ├─ publisher: GitHub, Inc.
 │  ├─ path: ./node_modules/@actions/http-client
 │  └─ licenseFile: ./node_modules/@actions/http-client/LICENSE
-├─ @ampproject/remapping@2.1.2
+├─ @ampproject/remapping@2.2.0
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/ampproject/remapping
 │  ├─ publisher: Justin Ridgewell
@@ -26,20 +26,27 @@ Third-Party Licenses.
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/code-frame
 │  └─ licenseFile: ./node_modules/@babel/code-frame/LICENSE
-├─ @babel/compat-data@7.17.0
+├─ @babel/compat-data@7.17.10
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/compat-data
 │  └─ licenseFile: ./node_modules/@babel/compat-data/LICENSE
-├─ @babel/core@7.17.5
+├─ @babel/core@7.17.10
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/core
 │  └─ licenseFile: ./node_modules/@babel/core/LICENSE
+├─ @babel/generator@7.17.10
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
+│  ├─ publisher: The Babel Team
+│  ├─ url: https://babel.dev/team
+│  ├─ path: ./node_modules/@babel/core/node_modules/@babel/generator
+│  └─ licenseFile: ./node_modules/@babel/core/node_modules/@babel/generator/LICENSE
 ├─ @babel/generator@7.17.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
@@ -61,7 +68,7 @@ Third-Party Licenses.
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/helper-builder-binary-assignment-operator-visitor
 │  └─ licenseFile: ./node_modules/@babel/helper-builder-binary-assignment-operator-visitor/LICENSE
-├─ @babel/helper-compilation-targets@7.16.7
+├─ @babel/helper-compilation-targets@7.17.10
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -108,6 +115,13 @@ Third-Party Licenses.
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/helper-function-name
 │  └─ licenseFile: ./node_modules/@babel/helper-function-name/LICENSE
+├─ @babel/helper-function-name@7.17.9
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
+│  ├─ publisher: The Babel Team
+│  ├─ url: https://babel.dev/team
+│  ├─ path: ./node_modules/@babel/helpers/node_modules/@babel/helper-function-name
+│  └─ licenseFile: ./node_modules/@babel/helpers/node_modules/@babel/helper-function-name/LICENSE
 ├─ @babel/helper-get-function-arity@7.16.7
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
@@ -136,7 +150,7 @@ Third-Party Licenses.
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/helper-module-imports
 │  └─ licenseFile: ./node_modules/@babel/helper-module-imports/LICENSE
-├─ @babel/helper-module-transforms@7.17.6
+├─ @babel/helper-module-transforms@7.17.7
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -171,7 +185,7 @@ Third-Party Licenses.
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/helper-replace-supers
 │  └─ licenseFile: ./node_modules/@babel/helper-replace-supers/LICENSE
-├─ @babel/helper-simple-access@7.16.7
+├─ @babel/helper-simple-access@7.17.7
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -213,7 +227,7 @@ Third-Party Licenses.
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/helper-wrap-function
 │  └─ licenseFile: ./node_modules/@babel/helper-wrap-function/LICENSE
-├─ @babel/helpers@7.17.2
+├─ @babel/helpers@7.17.9
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -227,6 +241,13 @@ Third-Party Licenses.
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/highlight
 │  └─ licenseFile: ./node_modules/@babel/highlight/LICENSE
+├─ @babel/parser@7.17.10
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
+│  ├─ publisher: The Babel Team
+│  ├─ url: https://babel.dev/team
+│  ├─ path: ./node_modules/@babel/helpers/node_modules/@babel/parser
+│  └─ licenseFile: ./node_modules/@babel/helpers/node_modules/@babel/parser/LICENSE
 ├─ @babel/parser@7.17.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
@@ -485,7 +506,7 @@ Third-Party Licenses.
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/plugin-transform-computed-properties
 │  └─ licenseFile: ./node_modules/@babel/plugin-transform-computed-properties/LICENSE
-├─ @babel/plugin-transform-destructuring@7.17.3
+├─ @babel/plugin-transform-destructuring@7.17.7
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -548,14 +569,14 @@ Third-Party Licenses.
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/plugin-transform-modules-amd
 │  └─ licenseFile: ./node_modules/@babel/plugin-transform-modules-amd/LICENSE
-├─ @babel/plugin-transform-modules-commonjs@7.16.8
+├─ @babel/plugin-transform-modules-commonjs@7.17.9
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/plugin-transform-modules-commonjs
 │  └─ licenseFile: ./node_modules/@babel/plugin-transform-modules-commonjs/LICENSE
-├─ @babel/plugin-transform-modules-systemjs@7.16.7
+├─ @babel/plugin-transform-modules-systemjs@7.17.8
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -569,7 +590,7 @@ Third-Party Licenses.
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/plugin-transform-modules-umd
 │  └─ licenseFile: ./node_modules/@babel/plugin-transform-modules-umd/LICENSE
-├─ @babel/plugin-transform-named-capturing-groups-regex@7.16.8
+├─ @babel/plugin-transform-named-capturing-groups-regex@7.17.10
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -632,7 +653,7 @@ Third-Party Licenses.
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/plugin-transform-react-pure-annotations
 │  └─ licenseFile: ./node_modules/@babel/plugin-transform-react-pure-annotations/LICENSE
-├─ @babel/plugin-transform-regenerator@7.16.7
+├─ @babel/plugin-transform-regenerator@7.17.9
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -702,7 +723,7 @@ Third-Party Licenses.
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/plugin-transform-unicode-regex
 │  └─ licenseFile: ./node_modules/@babel/plugin-transform-unicode-regex/LICENSE
-├─ @babel/preset-env@7.16.11
+├─ @babel/preset-env@7.17.10
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -728,7 +749,7 @@ Third-Party Licenses.
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/preset-typescript
 │  └─ licenseFile: ./node_modules/@babel/preset-typescript/LICENSE
-├─ @babel/runtime@7.17.2
+├─ @babel/runtime@7.17.9
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -742,6 +763,13 @@ Third-Party Licenses.
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/template
 │  └─ licenseFile: ./node_modules/@babel/template/LICENSE
+├─ @babel/traverse@7.17.10
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
+│  ├─ publisher: The Babel Team
+│  ├─ url: https://babel.dev/team
+│  ├─ path: ./node_modules/@babel/helpers/node_modules/@babel/traverse
+│  └─ licenseFile: ./node_modules/@babel/helpers/node_modules/@babel/traverse/LICENSE
 ├─ @babel/traverse@7.17.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
@@ -756,6 +784,13 @@ Third-Party Licenses.
 │  ├─ url: https://babel.dev/team
 │  ├─ path: ./node_modules/@babel/types
 │  └─ licenseFile: ./node_modules/@babel/types/LICENSE
+├─ @babel/types@7.17.10
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
+│  ├─ publisher: The Babel Team
+│  ├─ url: https://babel.dev/team
+│  ├─ path: ./node_modules/@babel/core/node_modules/@babel/types
+│  └─ licenseFile: ./node_modules/@babel/core/node_modules/@babel/types/LICENSE
 ├─ @discoveryjs/json-ext@0.5.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/discoveryjs/json-ext
@@ -764,27 +799,41 @@ Third-Party Licenses.
 │  ├─ url: https://github.com/lahmatiy
 │  ├─ path: ./node_modules/@discoveryjs/json-ext
 │  └─ licenseFile: ./node_modules/@discoveryjs/json-ext/LICENSE
-├─ @jridgewell/resolve-uri@3.0.5
+├─ @jridgewell/gen-mapping@0.1.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/jridgewell/gen-mapping
+│  ├─ publisher: Justin Ridgewell
+│  ├─ email: justin@ridgewell.name
+│  ├─ path: ./node_modules/@jridgewell/gen-mapping
+│  └─ licenseFile: ./node_modules/@jridgewell/gen-mapping/LICENSE
+├─ @jridgewell/resolve-uri@3.0.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jridgewell/resolve-uri
 │  ├─ publisher: Justin Ridgewell
 │  ├─ email: justin@ridgewell.name
 │  ├─ path: ./node_modules/@jridgewell/resolve-uri
 │  └─ licenseFile: ./node_modules/@jridgewell/resolve-uri/LICENSE
+├─ @jridgewell/set-array@1.1.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/jridgewell/set-array
+│  ├─ publisher: Justin Ridgewell
+│  ├─ email: justin@ridgewell.name
+│  ├─ path: ./node_modules/@jridgewell/set-array
+│  └─ licenseFile: ./node_modules/@jridgewell/set-array/LICENSE
 ├─ @jridgewell/sourcemap-codec@1.4.11
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jridgewell/sourcemap-codec
 │  ├─ publisher: Rich Harris
 │  ├─ path: ./node_modules/@jridgewell/sourcemap-codec
 │  └─ licenseFile: ./node_modules/@jridgewell/sourcemap-codec/LICENSE
-├─ @jridgewell/trace-mapping@0.3.4
+├─ @jridgewell/trace-mapping@0.3.9
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jridgewell/trace-mapping
 │  ├─ publisher: Justin Ridgewell
 │  ├─ email: justin@ridgewell.name
 │  ├─ path: ./node_modules/@jridgewell/trace-mapping
 │  └─ licenseFile: ./node_modules/@jridgewell/trace-mapping/LICENSE
-├─ @kintone/dts-gen@5.0.21
+├─ @kintone/dts-gen@5.0.23
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/kintone/js-sdk
 │  ├─ publisher: Cybozu, Inc.
@@ -804,28 +853,28 @@ Third-Party Licenses.
 │  ├─ url: https://cybozu.co.jp
 │  ├─ path: ./node_modules/@kintone/plugin-manifest-validator
 │  └─ licenseFile: ./node_modules/@kintone/plugin-manifest-validator/LICENSE
-├─ @kintone/plugin-packer@5.0.36
+├─ @kintone/plugin-packer@5.0.39
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/kintone/js-sdk
 │  ├─ publisher: Cybozu, Inc.
 │  ├─ url: https://cybozu.co.jp
 │  ├─ path: ./node_modules/@kintone/plugin-packer
 │  └─ licenseFile: ./node_modules/@kintone/plugin-packer/LICENSE
-├─ @kintone/plugin-uploader@6.0.14
+├─ @kintone/plugin-uploader@6.0.17
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/kintone/js-sdk
 │  ├─ publisher: Cybozu, Inc.
 │  ├─ url: https://cybozu.co.jp
 │  ├─ path: ./node_modules/@kintone/plugin-uploader
 │  └─ licenseFile: ./node_modules/@kintone/plugin-uploader/LICENSE
-├─ @kintone/rest-api-client@2.0.36
+├─ @kintone/rest-api-client@2.0.38
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/kintone/js-sdk
 │  ├─ publisher: Cybozu, Inc.
 │  ├─ url: https://cybozu.co.jp
 │  ├─ path: ./node_modules/@kintone/rest-api-client
 │  └─ licenseFile: ./node_modules/@kintone/rest-api-client/LICENSE
-├─ @kintone/webpack-plugin-kintone-plugin@5.0.36
+├─ @kintone/webpack-plugin-kintone-plugin@5.0.39
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/kintone/js-sdk
 │  ├─ publisher: Cybozu, Inc.
@@ -859,12 +908,12 @@ Third-Party Licenses.
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: ./node_modules/@types/estree
 │  └─ licenseFile: ./node_modules/@types/estree/LICENSE
-├─ @types/json-schema@7.0.9
+├─ @types/json-schema@7.0.11
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: ./node_modules/@types/json-schema
 │  └─ licenseFile: ./node_modules/@types/json-schema/LICENSE
-├─ @types/luxon@2.3.0
+├─ @types/luxon@2.3.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: ./node_modules/@types/luxon
@@ -874,7 +923,7 @@ Third-Party Licenses.
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: ./node_modules/@types/minimist
 │  └─ licenseFile: ./node_modules/@types/minimist/LICENSE
-├─ @types/node@17.0.21
+├─ @types/node@17.0.30
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: ./node_modules/@types/node
@@ -884,17 +933,17 @@ Third-Party Licenses.
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: ./node_modules/@types/normalize-package-data
 │  └─ licenseFile: ./node_modules/@types/normalize-package-data/LICENSE
-├─ @types/prop-types@15.7.4
+├─ @types/prop-types@15.7.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: ./node_modules/@types/prop-types
 │  └─ licenseFile: ./node_modules/@types/prop-types/LICENSE
-├─ @types/react-dom@17.0.13
+├─ @types/react-dom@18.0.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: ./node_modules/@types/react-dom
 │  └─ licenseFile: ./node_modules/@types/react-dom/LICENSE
-├─ @types/react@17.0.39
+├─ @types/react@18.0.8
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: ./node_modules/@types/react
@@ -904,7 +953,7 @@ Third-Party Licenses.
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: ./node_modules/@types/scheduler
 │  └─ licenseFile: ./node_modules/@types/scheduler/LICENSE
-├─ @types/yauzl@2.9.2
+├─ @types/yauzl@2.10.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: ./node_modules/@types/yauzl
@@ -1034,7 +1083,7 @@ Third-Party Licenses.
 │  ├─ email: sven@sauleau.com
 │  ├─ path: ./node_modules/acorn-import-assertions
 │  └─ licenseFile: ./node_modules/acorn-import-assertions/README.md
-├─ acorn@8.7.0
+├─ acorn@8.7.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/acornjs/acorn
 │  ├─ path: ./node_modules/acorn
@@ -1126,13 +1175,13 @@ Third-Party Licenses.
 │  ├─ email: iam@alexindigo.com
 │  ├─ path: ./node_modules/asynckit
 │  └─ licenseFile: ./node_modules/asynckit/LICENSE
-├─ axios@0.26.0
+├─ axios@0.26.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/axios/axios
 │  ├─ publisher: Matt Zabriskie
 │  ├─ path: ./node_modules/axios
 │  └─ licenseFile: ./node_modules/axios/LICENSE
-├─ babel-loader@8.2.3
+├─ babel-loader@8.2.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel-loader
 │  ├─ publisher: Luis Couto
@@ -1211,7 +1260,7 @@ Third-Party Licenses.
 │  ├─ url: https://github.com/jonschlinkert
 │  ├─ path: ./node_modules/braces
 │  └─ licenseFile: ./node_modules/braces/LICENSE
-├─ browserslist@4.20.0
+├─ browserslist@4.20.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/browserslist/browserslist
 │  ├─ publisher: Andrey Sitnik
@@ -1269,7 +1318,7 @@ Third-Party Licenses.
 │  ├─ url: sindresorhus.com
 │  ├─ path: ./node_modules/camelcase
 │  └─ licenseFile: ./node_modules/camelcase/license
-├─ caniuse-lite@1.0.30001314
+├─ caniuse-lite@1.0.30001334
 │  ├─ licenses: CC-BY-4.0
 │  ├─ repository: https://github.com/browserslist/caniuse-lite
 │  ├─ publisher: Ben Briggs
@@ -1409,7 +1458,7 @@ Third-Party Licenses.
 │  ├─ email: tj@vision-media.ca
 │  ├─ path: ./node_modules/webpack-cli/node_modules/commander
 │  └─ licenseFile: ./node_modules/webpack-cli/node_modules/commander/LICENSE
-├─ commander@9.0.0
+├─ commander@9.2.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/tj/commander.js
 │  ├─ publisher: TJ Holowaychuk
@@ -1440,12 +1489,12 @@ Third-Party Licenses.
 │  ├─ url: http://thlorenz.com
 │  ├─ path: ./node_modules/convert-source-map
 │  └─ licenseFile: ./node_modules/convert-source-map/LICENSE
-├─ core-js-compat@3.21.1
+├─ core-js-compat@3.22.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/zloirock/core-js
 │  ├─ path: ./node_modules/core-js-compat
 │  └─ licenseFile: ./node_modules/core-js-compat/LICENSE
-├─ core-js@3.21.1
+├─ core-js@3.22.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/zloirock/core-js
 │  ├─ path: ./node_modules/core-js
@@ -1495,8 +1544,8 @@ Third-Party Licenses.
 ├─ custom-reference-table@0.2.2
 │  ├─ licenses: MIT
 │  ├─ publisher: junichi-kose@peer-connect.co.jp
-│  ├─ path: E:/Users/j-kose2_peer-connect/repository2/kintone-custom-reference-table
-│  └─ licenseFile: LICENSE
+│  ├─ path: .e
+│  └─ licenseFile: .e/LICENSE
 ├─ debug@4.3.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/debug-js/debug
@@ -1504,6 +1553,13 @@ Third-Party Licenses.
 │  ├─ email: josh.junon@protonmail.com
 │  ├─ path: ./node_modules/debug
 │  └─ licenseFile: ./node_modules/debug/LICENSE
+├─ debug@4.3.4
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/debug-js/debug
+│  ├─ publisher: Josh Junon
+│  ├─ email: josh.junon@protonmail.com
+│  ├─ path: ./node_modules/@kintone/plugin-packer/node_modules/debug
+│  └─ licenseFile: ./node_modules/@kintone/plugin-packer/node_modules/debug/LICENSE
 ├─ decamelize-keys@1.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/dsblv/decamelize-keys
@@ -1527,10 +1583,11 @@ Third-Party Licenses.
 │  ├─ email: tmpvar@gmail.com
 │  ├─ path: ./node_modules/defaults
 │  └─ licenseFile: ./node_modules/defaults/LICENSE
-├─ define-properties@1.1.3
+├─ define-properties@1.1.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ljharb/define-properties
 │  ├─ publisher: Jordan Harband
+│  ├─ email: ljharb@gmail.com
 │  ├─ path: ./node_modules/define-properties
 │  └─ licenseFile: ./node_modules/define-properties/LICENSE
 ├─ delayed-stream@1.0.0
@@ -1547,13 +1604,13 @@ Third-Party Licenses.
 │  ├─ publisher: Matt Andrews
 │  ├─ path: ./node_modules/denodeify
 │  └─ licenseFile: ./node_modules/denodeify/README.md
-├─ devtools-protocol@0.0.969999
+├─ devtools-protocol@0.0.981744
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/ChromeDevTools/devtools-protocol
 │  ├─ publisher: The Chromium Authors
 │  ├─ path: ./node_modules/devtools-protocol
 │  └─ licenseFile: ./node_modules/devtools-protocol/LICENSE
-├─ electron-to-chromium@1.4.77
+├─ electron-to-chromium@1.4.129
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/kilian/electron-to-chromium
 │  ├─ publisher: Kilian Valkhof
@@ -1581,7 +1638,7 @@ Third-Party Licenses.
 │  ├─ email: mathiasbuus@gmail.com
 │  ├─ path: ./node_modules/end-of-stream
 │  └─ licenseFile: ./node_modules/end-of-stream/LICENSE
-├─ enhanced-resolve@5.9.2
+├─ enhanced-resolve@5.9.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack/enhanced-resolve
 │  ├─ publisher: Tobias Koppers @sokra
@@ -1837,7 +1894,7 @@ Third-Party Licenses.
 │  ├─ url: sindresorhus.com
 │  ├─ path: ./node_modules/globals
 │  └─ licenseFile: ./node_modules/globals/license
-├─ graceful-fs@4.2.9
+├─ graceful-fs@4.2.10
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/node-graceful-fs
 │  ├─ path: ./node_modules/graceful-fs
@@ -1866,6 +1923,13 @@ Third-Party Licenses.
 │  ├─ url: sindresorhus.com
 │  ├─ path: ./node_modules/inquirer/node_modules/has-flag
 │  └─ licenseFile: ./node_modules/inquirer/node_modules/has-flag/license
+├─ has-property-descriptors@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/inspect-js/has-property-descriptors
+│  ├─ publisher: Jordan Harband
+│  ├─ email: ljharb@gmail.com
+│  ├─ path: ./node_modules/has-property-descriptors
+│  └─ licenseFile: ./node_modules/has-property-descriptors/LICENSE
 ├─ has-symbols@1.0.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/inspect-js/has-symbols
@@ -1897,7 +1961,7 @@ Third-Party Licenses.
 │  ├─ url: http://re-becca.org
 │  ├─ path: ./node_modules/hosted-git-info
 │  └─ licenseFile: ./node_modules/hosted-git-info/LICENSE
-├─ https-proxy-agent@5.0.0
+├─ https-proxy-agent@5.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/TooTallNate/node-https-proxy-agent
 │  ├─ publisher: Nathan Rajlich
@@ -1971,7 +2035,7 @@ Third-Party Licenses.
 │  ├─ repository: https://github.com/isaacs/inherits
 │  ├─ path: ./node_modules/inherits
 │  └─ licenseFile: ./node_modules/inherits/LICENSE
-├─ inquirer@8.2.0
+├─ inquirer@8.2.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/SBoudrias/Inquirer.js
 │  ├─ publisher: Simon Boudrias
@@ -2156,14 +2220,7 @@ Third-Party Licenses.
 │  ├─ publisher: Evgeny Poberezkin
 │  ├─ path: ./node_modules/json-schema-traverse
 │  └─ licenseFile: ./node_modules/json-schema-traverse/LICENSE
-├─ json5@1.0.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/json5/json5
-│  ├─ publisher: Aseem Kishore
-│  ├─ email: aseem.kishore@gmail.com
-│  ├─ path: ./node_modules/loader-utils/node_modules/json5
-│  └─ licenseFile: ./node_modules/loader-utils/node_modules/json5/LICENSE.md
-├─ json5@2.2.0
+├─ json5@2.2.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/json5/json5
 │  ├─ publisher: Aseem Kishore
@@ -2192,13 +2249,13 @@ Third-Party Licenses.
 │  ├─ email: brian@donovans.cc
 │  ├─ path: ./node_modules/lines-and-columns
 │  └─ licenseFile: ./node_modules/lines-and-columns/LICENSE
-├─ loader-runner@4.2.0
+├─ loader-runner@4.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack/loader-runner
 │  ├─ publisher: Tobias Koppers @sokra
 │  ├─ path: ./node_modules/loader-runner
 │  └─ licenseFile: ./node_modules/loader-runner/LICENSE
-├─ loader-utils@1.4.0
+├─ loader-utils@2.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack/loader-utils
 │  ├─ publisher: Tobias Koppers @sokra
@@ -2220,6 +2277,14 @@ Third-Party Licenses.
 │  ├─ url: http://allyoucanleet.com/
 │  ├─ path: ./node_modules/lodash.debounce
 │  └─ licenseFile: ./node_modules/lodash.debounce/LICENSE
+├─ lodash.sortby@4.7.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/lodash/lodash
+│  ├─ publisher: John-David Dalton
+│  ├─ email: john.david.dalton@gmail.com
+│  ├─ url: http://allyoucanleet.com/
+│  ├─ path: ./node_modules/lodash.sortby
+│  └─ licenseFile: ./node_modules/lodash.sortby/LICENSE
 ├─ lodash@4.17.21
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/lodash/lodash
@@ -2249,7 +2314,7 @@ Third-Party Licenses.
 │  ├─ email: i@izs.me
 │  ├─ path: ./node_modules/lru-cache
 │  └─ licenseFile: ./node_modules/lru-cache/LICENSE
-├─ luxon@2.3.1
+├─ luxon@2.3.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/moment/luxon
 │  ├─ publisher: Isaac Cambron
@@ -2310,12 +2375,12 @@ Third-Party Licenses.
 │  ├─ email: me@stephensugden.com
 │  ├─ path: ./node_modules/merge-stream
 │  └─ licenseFile: ./node_modules/merge-stream/LICENSE
-├─ mime-db@1.51.0
+├─ mime-db@1.52.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jshttp/mime-db
 │  ├─ path: ./node_modules/mime-db
 │  └─ licenseFile: ./node_modules/mime-db/LICENSE
-├─ mime-types@2.1.34
+├─ mime-types@2.1.35
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jshttp/mime-types
 │  ├─ path: ./node_modules/mime-types
@@ -2351,14 +2416,6 @@ Third-Party Licenses.
 │  ├─ email: vdemedes@gmail.com
 │  ├─ path: ./node_modules/minimist-options
 │  └─ licenseFile: ./node_modules/minimist-options/license
-├─ minimist@1.2.5
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/substack/minimist
-│  ├─ publisher: James Halliday
-│  ├─ email: mail@substack.net
-│  ├─ url: http://substack.net
-│  ├─ path: ./node_modules/minimist
-│  └─ licenseFile: ./node_modules/minimist/LICENSE
 ├─ mkdirp-classic@0.5.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mafintosh/mkdirp-classic
@@ -2400,9 +2457,9 @@ Third-Party Licenses.
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/bitinn/node-fetch
 │  ├─ publisher: David Frank
-│  ├─ path: ./node_modules/cross-fetch/node_modules/node-fetch
-│  └─ licenseFile: ./node_modules/cross-fetch/node_modules/node-fetch/LICENSE.md
-├─ node-releases@2.0.2
+│  ├─ path: ./node_modules/node-fetch
+│  └─ licenseFile: ./node_modules/node-fetch/LICENSE.md
+├─ node-releases@2.0.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/chicoxyzzy/node-releases
 │  ├─ publisher: Sergey Rubanov
@@ -2444,14 +2501,6 @@ Third-Party Licenses.
 │  ├─ url: sindresorhus.com
 │  ├─ path: ./node_modules/npm-run-path
 │  └─ licenseFile: ./node_modules/npm-run-path/license
-├─ object-assign@4.1.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/object-assign
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  ├─ path: ./node_modules/object-assign
-│  └─ licenseFile: ./node_modules/object-assign/license
 ├─ object-inspect@1.12.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/inspect-js/object-inspect
@@ -2664,7 +2713,7 @@ Third-Party Licenses.
 │  ├─ email: andrey@sitnik.ru
 │  ├─ path: ./node_modules/postcss
 │  └─ licenseFile: ./node_modules/postcss/LICENSE
-├─ prettier@2.5.1
+├─ prettier@2.6.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/prettier/prettier
 │  ├─ publisher: James Long
@@ -2699,7 +2748,7 @@ Third-Party Licenses.
 │  ├─ url: https://mathiasbynens.be/
 │  ├─ path: ./node_modules/punycode
 │  └─ licenseFile: ./node_modules/punycode/LICENSE-MIT.txt
-├─ puppeteer@13.5.0
+├─ puppeteer@13.7.0
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/puppeteer/puppeteer
 │  ├─ publisher: The Chromium Authors
@@ -2723,12 +2772,12 @@ Third-Party Licenses.
 │  ├─ repository: https://github.com/crypto-browserify/randombytes
 │  ├─ path: ./node_modules/randombytes
 │  └─ licenseFile: ./node_modules/randombytes/LICENSE
-├─ react-dom@17.0.2
+├─ react-dom@18.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/react
 │  ├─ path: ./node_modules/react-dom
 │  └─ licenseFile: ./node_modules/react-dom/LICENSE
-├─ react@17.0.2
+├─ react@18.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/react
 │  ├─ path: ./node_modules/react
@@ -2799,9 +2848,9 @@ Third-Party Licenses.
 │  ├─ email: bn@cs.stanford.edu
 │  ├─ path: ./node_modules/regenerator-runtime
 │  └─ licenseFile: ./node_modules/regenerator-runtime/LICENSE
-├─ regenerator-transform@0.14.5
+├─ regenerator-transform@0.15.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/regenerator/tree/master/packages/regenerator-transform
+│  ├─ repository: https://github.com/facebook/regenerator/tree/master/packages/transform
 │  ├─ publisher: Ben Newman
 │  ├─ email: bn@cs.stanford.edu
 │  ├─ path: ./node_modules/regenerator-transform
@@ -2882,7 +2931,7 @@ Third-Party Licenses.
 │  ├─ email: admin@simonboudrias.com
 │  ├─ path: ./node_modules/run-async
 │  └─ licenseFile: ./node_modules/run-async/LICENSE
-├─ rxjs@7.5.4
+├─ rxjs@7.5.5
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/reactivex/rxjs
 │  ├─ publisher: Ben Lesh
@@ -2913,7 +2962,7 @@ Third-Party Licenses.
 │  ├─ url: https://github.com/ChALkeR
 │  ├─ path: ./node_modules/safer-buffer
 │  └─ licenseFile: ./node_modules/safer-buffer/LICENSE
-├─ scheduler@0.20.2
+├─ scheduler@0.22.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/react
 │  ├─ path: ./node_modules/scheduler
@@ -2950,6 +2999,12 @@ Third-Party Licenses.
 ├─ semver@7.3.5
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/npm/node-semver
+│  ├─ path: ./node_modules/css-loader/node_modules/semver
+│  └─ licenseFile: ./node_modules/css-loader/node_modules/semver/LICENSE
+├─ semver@7.3.7
+│  ├─ licenses: ISC
+│  ├─ repository: https://github.com/npm/node-semver
+│  ├─ publisher: GitHub Inc.
 │  ├─ path: ./node_modules/normalize-package-data/node_modules/semver
 │  └─ licenseFile: ./node_modules/normalize-package-data/node_modules/semver/LICENSE
 ├─ serialize-javascript@6.0.0
@@ -3022,7 +3077,7 @@ Third-Party Licenses.
 │  ├─ email: nfitzgerald@mozilla.com
 │  ├─ path: ./node_modules/source-map-support/node_modules/source-map
 │  └─ licenseFile: ./node_modules/source-map-support/node_modules/source-map/LICENSE
-├─ source-map@0.7.3
+├─ source-map@0.8.0-beta.0
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/mozilla/source-map
 │  ├─ publisher: Nick Fitzgerald
@@ -3164,7 +3219,7 @@ Third-Party Licenses.
 │  ├─ publisher: webpack Contrib Team
 │  ├─ path: ./node_modules/terser-webpack-plugin
 │  └─ licenseFile: ./node_modules/terser-webpack-plugin/LICENSE
-├─ terser@5.12.0
+├─ terser@5.13.1
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/terser/terser
 │  ├─ publisher: Mihai Bazon
@@ -3209,6 +3264,13 @@ Third-Party Licenses.
 │  ├─ publisher: Sebastian Mayr
 │  ├─ email: npm@smayr.name
 │  └─ path: ./node_modules/tr46
+├─ tr46@1.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/Sebmaster/tr46.js
+│  ├─ publisher: Sebastian Mayr
+│  ├─ email: npm@smayr.name
+│  ├─ path: ./node_modules/terser/node_modules/tr46
+│  └─ licenseFile: ./node_modules/terser/node_modules/tr46/LICENSE.md
 ├─ trim-newlines@3.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/trim-newlines
@@ -3217,7 +3279,7 @@ Third-Party Licenses.
 │  ├─ url: sindresorhus.com
 │  ├─ path: ./node_modules/trim-newlines
 │  └─ licenseFile: ./node_modules/trim-newlines/license
-├─ tslib@2.3.1
+├─ tslib@2.4.0
 │  ├─ licenses: 0BSD
 │  ├─ repository: https://github.com/Microsoft/tslib
 │  ├─ publisher: Microsoft Corp.
@@ -3262,7 +3324,7 @@ Third-Party Licenses.
 │  ├─ url: sindresorhus.com
 │  ├─ path: ./node_modules/read-pkg-up/node_modules/type-fest
 │  └─ licenseFile: ./node_modules/read-pkg-up/node_modules/type-fest/license
-├─ typescript@4.6.2
+├─ typescript@4.6.4
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/Microsoft/TypeScript
 │  ├─ publisher: Microsoft Corp.
@@ -3346,6 +3408,14 @@ Third-Party Licenses.
 │  ├─ url: https://domenic.me/
 │  ├─ path: ./node_modules/webidl-conversions
 │  └─ licenseFile: ./node_modules/webidl-conversions/LICENSE.md
+├─ webidl-conversions@4.0.2
+│  ├─ licenses: BSD-2-Clause
+│  ├─ repository: https://github.com/jsdom/webidl-conversions
+│  ├─ publisher: Domenic Denicola
+│  ├─ email: d@domenic.me
+│  ├─ url: https://domenic.me/
+│  ├─ path: ./node_modules/terser/node_modules/webidl-conversions
+│  └─ licenseFile: ./node_modules/terser/node_modules/webidl-conversions/LICENSE.md
 ├─ webpack-cli@4.9.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack/webpack-cli
@@ -3364,7 +3434,7 @@ Third-Party Licenses.
 │  ├─ publisher: Tobias Koppers @sokra
 │  ├─ path: ./node_modules/webpack-sources
 │  └─ licenseFile: ./node_modules/webpack-sources/LICENSE
-├─ webpack@5.70.0
+├─ webpack@5.72.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack/webpack
 │  ├─ publisher: Tobias Koppers @sokra
@@ -3377,6 +3447,13 @@ Third-Party Licenses.
 │  ├─ email: github@smayr.name
 │  ├─ path: ./node_modules/whatwg-url
 │  └─ licenseFile: ./node_modules/whatwg-url/LICENSE.txt
+├─ whatwg-url@7.1.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/jsdom/whatwg-url
+│  ├─ publisher: Sebastian Mayr
+│  ├─ email: github@smayr.name
+│  ├─ path: ./node_modules/terser/node_modules/whatwg-url
+│  └─ licenseFile: ./node_modules/terser/node_modules/whatwg-url/LICENSE.txt
 ├─ which@2.0.2
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/node-which
@@ -3392,6 +3469,14 @@ Third-Party Licenses.
 │  ├─ email: damon.oehlman@gmail.com
 │  ├─ path: ./node_modules/wildcard
 │  └─ licenseFile: ./node_modules/wildcard/README.md
+├─ wrap-ansi@7.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/chalk/wrap-ansi
+│  ├─ publisher: Sindre Sorhus
+│  ├─ email: sindresorhus@gmail.com
+│  ├─ url: https://sindresorhus.com
+│  ├─ path: ./node_modules/wrap-ansi
+│  └─ licenseFile: ./node_modules/wrap-ansi/license
 ├─ wrappy@1.0.2
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/npm/wrappy
