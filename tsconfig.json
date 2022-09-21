@@ -5,8 +5,8 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "esModuleInterop": true,
-    "importHelpers": true,                 /* Import emit helpers from 'tslib'. */
-    "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+    "importHelpers": true, /* Import emit helpers from 'tslib'. */
+    "moduleResolution": "node", /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
     "noUnusedLocals": true,
     "noImplicitAny": false,
     "declarationDir": "dist/types",
