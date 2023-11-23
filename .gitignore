@@ -18,5 +18,9 @@ yarn-error.log*
 
 /*.pem
 /*.ppk
+/dist
+/build
 
 .idea
+_memo.txt
+upload1.bat

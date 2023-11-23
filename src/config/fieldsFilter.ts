@@ -1,15 +1,16 @@
+import type { OneOf } from "@kintone/rest-api-client/lib/KintoneFields/types/property";
 export default class fieldsFilter {
-  static filter (fields, removals) {
+  static filter(fields: OneOf[] | null | undefined, removals: string[]) {
     return (fields || []).filter(field => !removals.includes(field.type));
   }
-  static conditionSelf (fields) {
+  static conditionSelf(fields: OneOf[] | null | undefined) {
     return this.filter(fields, [
       'SUBTABLE',
       'GROUP',
       'REFERENCE_TABLE'
     ]);
   }
-  static conditionTarget (fields) {
+  static conditionTarget(fields: OneOf[] | null | undefined) {
     return this.filter(fields, [
       'CATEGORY',
       'SUBTABLE',
@@ -17,14 +18,14 @@ export default class fieldsFilter {
       'REFERENCE_TABLE'
     ]);
   }
-  static show (fields) {
+  static show(fields: OneOf[] | null | undefined) {
     return this.filter(fields, [
       'SUBTABLE',
       'GROUP',
       'REFERENCE_TABLE',
     ]);
   }
-  static sort (fields) {
+  static sort(fields: OneOf[] | null | undefined) {
     return this.filter(fields, [
       'STATUS_ASSIGNEE',
       'CATEGORY',

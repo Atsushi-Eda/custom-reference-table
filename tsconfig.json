@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "esModuleInterop": true,
+    "importHelpers": true, /* Import emit helpers from 'tslib'. */
+    "moduleResolution": "node", /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+    "declarationDir": "dist/types",
+    "declaration": true,
+    "target": "es2017",
+    "module": "esnext",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "jsx": "react",
+    "strict": true,
+    "outDir": "build/"
+  },
+  "files": [
+    "./node_modules/@kintone/dts-gen/kintone.d.ts",
+    "./type/ReferenceTable.d.ts"
+  ],
+  "include": [
+    "src/**/*",
+    "type/ReferenceTable.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "plugin"
+  ]
+}

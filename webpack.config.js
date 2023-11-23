@@ -1,10 +1,11 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-module.exports = (env = {}) => {
-  return {
+const KintonePlugin = require('@kintone/webpack-plugin-kintone-plugin');
+
+module.exports = [
+  {
     entry: {
-      "config.min": './src/config/index.jsx',
-      "desktop.min": './src/desktop/index.jsx',
+      "config.min": './src/config/index.tsx',
+      "desktop.min": './src/desktop/index.tsx',
     },
     output: {
       path: path.resolve(__dirname, 'plugin'),
@@ -13,13 +14,12 @@ module.exports = (env = {}) => {
     module: {
       rules: [
         {
-          test: /(\.js|\.jsx)$/,
+          test: /\.(ts|tsx)$/,
           exclude: /(node_modules|bower_components)/,
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['react-app','@babel/preset-env'],
-              plugins: ["transform-class-properties"]
+              presets: ['@babel/preset-env', '@babel/preset-react'],
             }
           }
         },
@@ -31,21 +31,38 @@ module.exports = (env = {}) => {
           ]
         }
       ]
+      // noParse: [
+      //   require.resolve('react'),
+      //   require.resolve('react-dom'),
+      // ]
     },
+    // externals: {
+      // luxon: 'luxon', // "https://js.cybozu.com/luxon/2.0.2/luxon.min.js",
+      // Kuc: 'Kuc',
+      // "kintone-ui-component": 'Kuc' // Error: Minified React error #130;
+      // 'react': {
+      //   root: 'React',
+      //   commonjs: 'react',
+      //   commonjs2: 'react',
+      // },
+      // 'react-dom': {
+      //   root: 'ReactDOM',
+      //   commonjs: 'react-dom',
+      //   commonjs2: 'react-dom',
+      // },
+    // },
+    plugins: [
+      new KintonePlugin({
+        manifestJSONPath: './plugin/manifest.json',
+        privateKeyPath: './private.ppk',
+        pluginZipPath: './release/plugin.zip'
+      })
+    ],
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.ts', '.tsx', '.js', '.json']
     },
-    watch: env.watch,
-    optimization: {
-      minimizer: [
-        new UglifyJsPlugin({
-          include: /\.min\.js$/,
-        })
-      ]
-    },
-    devtool: 'inline-source-map',
     devServer: {
       disableHostCheck: true
     }
   }
-}
+]
